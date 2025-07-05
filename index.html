@@ -1,403 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhananjay Sah's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dhananjay Sah | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <!-- HEADER  -->
-    <div class="l-header">
-        <nav class="nav bd-grid">
-            <div class="nav_toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
-            </div>
-
-            <div>
-                <a href="" class="nav_logo">Dhananjay</a>
-            </div>
-
-            <div class="nav_menu" id="nav-menu">
-                <div class="nav_close" id="nav-close">
-                    <i class='bx bx-x'></i>
-                </div>
-
-                <ul class="nav_list">
-                    <li class="nav_item"><a href="#home" class="nav_link active">Home</a></li>
-                    <li class="nav_item"><a href="#about" class="nav_link">About</a></li>
-                    <li class="nav_item"><a href="#skills" class="nav_link">Skills</a></li>
-                    <li class="nav_item"><a href="#services" class="nav_link">Services</a></li>
-                    <!-- <li class="nav_item"><a href="#works" class="nav_link">Works</a></li> -->
-                    <li class="nav_item"><a href="#contact" class="nav_link">Contact</a></li>
-                    
-                </ul>
-            </div>
-        </nav>
+  <!-- Sidebar Navigation for Mobile/Tablet -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span class="logo">Dhananjay Sah</span>
+      <button class="close-btn" id="sidebarClose" aria-label="Close menu"><i class='bx bx-x'></i></button>
     </div>
-    <main class="1-main">
-        <!-- HOME -->
-        <section class="home" id="home">
-            <div class="home_container bd-grid" >
-                <div class="home_data">
-                    <div class="home_img">
-                        <img src="profile.png" alt="Profile Picture">
-                    </div>
-
-                    <h1 class="home_title">Dhananjay Sah</h1>
-                    <span class="home_profession">Student</span>
-
-                    <div class="home_social">
-                        <a href="https://www.linkedin.com/in/dhananjaysah46" class="home_social-link"><i class='bx bxl-linkedin'></i></a>
-                        <a href="https://github.com/dhananjaysah46" class="home_social-link"><i class='bx bxl-github'></i></a>
-                        <a href="https://www.facebook.com/dhananjay.sah.46" class="home_social-link"><i class='bx bxl-facebook'></i></a>
-                        <a href="https://www.instagram.com/dhananjay.sah.22" class="home_social-link"><i class='bx bxl-instagram' ></i></a>
-                    </div>
-
-                    <a download="Dhananjay-cv.pdf" href="Dhananjay-cv.pdf" class="button home_button">Download Resume</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section class="about section" id="about">
-            <span class="section-subtitle">My Intro</span>
-            <h2 class="section-title">About Me</h2>
-
-            <div class="about_container bd-grid">
-                <div class="about_data">
-                    <p class="about_description">Hello! I'm a dedicated student with a passion for creativity and a keen interest in learning. While I may not have extensive professional experience yet, I am eager to explore and develop my skills in various areas. I'm enthusiastic about embracing new challenges and am committed to producing high-quality work. Let's embark on this journey of growth and discovery together!</p>
-                    <img src="photo.jpg" alt="Profile picture" class="about_img">
-                </div>
-            </div>
-            <div>
-                <div class="about_information">
-                    <h3 class="about_information-title">Information</h3>
-                    <div class="about_information-data">
-                        <i class='bx bx-user about_information-icon'></i>
-                        <span>Dhananjay Sah</span>
-                    </div>
-
-                    <div class="about_information-data">
-                        <i class='bx bx-phone about_information-icon'></i>
-                        <span>+977 9817700126</span>
-                    </div>
-
-                    <div class="about_information-data">
-                        <i class='bx bx-phone about_information-icon'></i>
-                        <span>+977 9765834172</span>
-                    </div>
-
-                    <div class="about_information-data">
-                        <i class='bx bx-envelope about_information-icon'></i>
-                        <span>dhanjusah123@gmail.com</span>
-                    </div>
-                </div>
-
-                <div class="about_information">
-                    <h3 class="about_information-title">Experience and Support</h3>
-
-                    <div class="about_information-data">
-                        <i class='bx bx-medal about_information-icon'></i>
-                        <div>
-                            <span class="about_information-subtitle">6 Months Intern</span>
-                            <span class="about_information-subtitle-small">Experience</span>
-                        </div>
-                    </div>
-
-                    <div class="about_information-data">
-                        <i class='bx bx-briefcase about_information-icon'></i>
-                        <div>
-                            <span class="about_information-subtitle">5+ projects</span>
-                            <span class="about_information-subtitle-small">Completed</span>
-                        </div>
-                    </div>
-                    
-                    <div class="about_information-data">
-                        <i class='bx bx-support about_information-icon'></i>
-                        <div>
-                            <span class="about_information-subtitle">Support</span>
-                            <span class="about_information-subtitle-small">Online 24/7</span>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section class="skills section" id="skills">
-            <span class="section-subtitle">Why Choose Me</span>
-            <h2 class="section-title">My expertise Area</h2>
-
-            <div class="skills_container bd-grid">
-                <div class="skills_content">
-                    <h3 class="skills_subtitle">Frontend</h3>
-
-                    <div class="skills_data">
-                        <span class="skills_name">HTML/CSS</span>
-                        <span class="skills_number">80%</span>
-                        <span class="skills_bar skills_html"></span>
-                    </div>
-
-                    <div class="skills_data">
-                        <span class="skills_name">Javascript</span>
-                        <span class="skills_number">60%</span>
-                        <span class="skills_bar skills_js"></span>
-                    </div>
-
-                    <div class="skills_data">
-                        <span class="skills_name">React</span>
-                        <span class="skills_number">30%</span>
-                        <span class="skills_bar skills_react"></span>
-                    </div>
-
-                    <div class="skills_data">
-                        <span class="skills_name">Angular</span>
-                        <span class="skills_number">10%</span>
-                        <span class="skills_bar skills_angular"></span>
-                    </div>
-                </div>
-            
-
-            <div class="skills_content">
-                <h3 class="skills_subtitle">Backend</h3>
-
-                <div class="skills_data">
-                    <span class="skills_name">Java</span>
-                    <span class="skills_number">80%</span>
-                    <span class="skills_bar skills_java"></span>
-                </div>
-
-                <div class="skills_data">
-                    <span class="skills_name">Php</span>
-                    <span class="skills_number">60%</span>
-                    <span class="skills_bar skills_php"></span>
-                </div>
-
-                <div class="skills_data">
-                    <span class="skills_name">Node js</span>
-                    <span class="skills_number">20%</span>
-                    <span class="skills_bar skills_node"></span>
-                </div>
-
-                <div class="skills_data">
-                    <span class="skills_name">Python</span>
-                    <span class="skills_number">30%</span>
-                    <span class="skills_bar skills_python"></span>
-                </div>
-            </div>    
-        </section>
-
-        <!-- EDUCATION -->
-        <section class="education section">
-            <span class="section-subtitle">Qualification</span>
-            <h2 class="section-title">My Education</h2>
-
-            <div class="education_container bd-grid">
-                <div class="education_content">
-                    <div>
-                        <h3 class="education_year">2010 - 2019</h3>
-                        <span class="education_speciality">Middle School</span>
-                    </div>
-
-                    <div class="education_time">
-                        <span class="education_rounder"></span>
-                        <span class="education_line"></span>
-                    </div>
-
-                    <div>
-                        <h3 class="education_race">Basics</h3> 
-                        <span class="education_university">School Level</span>
-                    </div>
-                </div>        
-
-                <div class="education_content">
-                    <div>
-                        <h3 class="education_year">2020 - 2022</h3>
-                        <span class="education_speciality">High School/+2</span>
-                    </div>
-
-                    <div class="education_time">
-                        <span class="education_rounder"></span>
-                        <span class="education_line"></span>
-                    </div>
-
-                    <div>
-                        <h3 class="education_race">Science(Diploma in Civil Engineering)</h3>
-                        <span class="education_university">College Level</span>
-                    </div>
-                </div>
-
-                <div class="education_content">
-                    <div>
-                        <h3 class="education_year">2023 - 2026</h3>
-                        <span class="education_speciality">Bachelor's</span>
-                    </div>
-
-                    <div class="education_time">
-                        <span class="education_rounder"></span>
-                        <span class="education_line"></span>
-                    </div>
-
-                    <div>
-                        <h3 class="education_race">BCA(Bachelor in Computer Application)</h3>
-                        <span class="education_university">T.U University</span>
-                    </div>
-                </div>
-
-                <div class="education_content">
-                    <div>
-                        <h3 class="education_year">2026 - Future</h3>
-                        <span class="education_speciality">Works</span>
-                    </div>
-
-                    <div class="education_time">
-                        <span class="education_rounder"></span>
-                        <span class="education_line"></span>
-                    </div>
-
-                    <div>
-                        <h3 class="education_race">Programmer</h3>
-                        <span class="education_university">.....</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES -->
-        <section class="services section" id="services">
-            <span class="section-subtitle">What I Offer</span>
-            <h2 class="section-title">My Services</h2>
-
-            <div class="services_container bd-grid">
-                <div class="services_content">
-                    <i class="bx bx-code services_icon"></i>
-                    <h3 class="services_title">Web Design</h3>
-                    <p class="services_description">I'm passionate about web design and eager to apply my growing skills to create beautiful and functional websites. While I may be new to the field, I am committed to delivering high-quality results and continually improving my craft. Let's work together to bring your vision to life!</p>
-                </div>
-
-                <div class="services_content">
-                    <i class="bx bx-pen services_icon"></i>
-                    <h3 class="services_title">Graphic design</h3>
-                    <p class="services_description">With a passion for visual storytelling, I offer graphic design services that breathe life into your ideas. While I'm still refining my skills, I approach each project with creativity and attention to detail, delivering eye-catching designs that leave a lasting impression.</p>
-                </div>
-
-                <div class="services_content">
-                    <i class="bx bx-brush services_icon"></i>
-                    <h3 class="services_title">UI/UX</h3>
-                    <p class="services_description">Driven by a fascination for user-centered design, I provide UI/UX design services focused on creating intuitive and engaging digital experiences. Although I'm in the early stages of my career, I'm committed to crafting interfaces that delight users and exceed expectations.</p>
-                </div>
-
-                <div class="services_content">
-                    <i class="bx bx-server services_icon"></i>
-                    <h3 class="services_title">Backend Development</h3>
-                    <p class="services_description">Aspiring to streamline digital experiences, I offer backend development services aimed at building robust and scalable web applications. While I'm still mastering the intricacies of backend technologies, I'm dedicated to writing clean and efficient code that powers seamless online experiences.</p>
-                </div>
-
-                <div class="services_content">
-                    <i class="bx bx-pencil services_icon"></i>
-                    <h3 class="services_title">Content Writing</h3>
-                    <p class="services_description">I'm a student with a knack for words, offering engaging and informative content tailored to your needs. Though I may be new to professional writing, I'm eager to learn and adapt, delivering well-researched and compelling articles, blogs, or copy that captivate your audience.</p>
-                </div>
- 
-                <div class="services_content">
-                    <i class="bx bx-mobile services_icon"></i>
-                    <h3 class="services_title">Mobile Interface Design</h3>
-                    <p class="services_description">Passionate about creating captivating mobile experiences, I specialize in designing user-friendly interfaces for iOS and Android applications. Although I'm relatively new to the field, I bring fresh perspectives and innovative ideas to mobile design, ensuring your app stands out in a crowded marketplace.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECT IN MIND -->
-        <section class="project section">
-            <div class="project_container bd-grid">
-                <div class="project_data">
-                    <h2 class="section_title project_title">Do you have a project in mind</h2>
-                    <p class="project_description">If you have a project that you want to carry out, do not hesitate and tell me what it is, and what services I can offer you, contact me directly here.</p>
-                    <a href="#contact" class="button button_light">Contact Me</a>
-                </div>
-
-                <img src="p.jpg" alt="" class="project_img">
-            </div>
-        </section>
-
-        <!-- WORKS -- if required  -->
-        <!-- <section class="works section" id="works">
-            <span class="section-subtitle">My portfolio</span>
-            <h2 class="section-title">Recent Works</h2>
-
-            <div class="works_container bd-grid">
-                <div class="works_img">
-                    <img src="#" alt="">
-
-                    <div class="works_data">
-                        <a href="#" class="works_link"><i class="bx bx-link-alt"></i></a>
-                        <span class="works_title">Work 1</span>
-                    </div>
-
-                </div>
-            </div>
-        </section> -->
-
-        <!-- CONTACT -->
-        <section class="contact section" id="contact">
-            <span class="section-subtitle">Contact Me</span>
-            <h2 class="section title">Get In Touch</h2>
-
-            <div class="contact_container bd-grid">
-                <form action="" class="contact_form">
-                    <div class="contact_inputs">
-                        <input type="text" placeholder="Name" class="contact_input">
-                        <input type="mail" placeholder="Email" class="contact_input">
-                    </div>
-                    <input type="text" placeholder="Project" class="contact_input">
-
-                    <textarea name="" id="" cols="0" rows="10" placeholder="Message" class="contact_input"></textarea>
-
-                    <input type="submit" value="Send Message" class="button contact_button">
-                </form>
-
-                <div>
-                    <div class="contact_info">
-                        <h3 class="contact_subtitle">Call Me</h3>
-                        <span class="contact_text">+977-9817700126</span>
-                        <span class="contact_text">+977-9765834172</span>
-                    </div>
-
-                    <div class="contact_info">
-                        <h3 class="contact_subtitle">E-mail</h3>
-                        <span class="contact_text">dhanjusah123@gmail.com</span>
-                        <span class="contact_text">contact me@dhanjusah123@gmail.com</span>
-                    </div>
-
-                    <div class="contact_info">
-                        <h3 class="contact_subtitle">Location</h3>
-                        <span class="contact_text">Madhyapur Thimi, Bhaktapur</span>
-                        <span class="contact_text">Bagmati, Nepal</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer section">
-        <div class="footer_container bd-grid">
-            <h1 class="footer_title">Dhananjay</h1>
-            <p class="footer_description">I am Dhananjay and this is my personal website, consult me here.</p>
-
-            <div class="footer_social">
-                <a href="https://www.facebook.com/dhananjay.sah.46" class="footer_link"><i class="bx bxl-facebook"></i></a>
-                <a href="https://www.instagram.com/dhananjay.sah.22" class="footer_link"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="footer_link"><i class="bx bxl-twitter"></i></a>
-            </div>
-
-            <p class="footer_copy">&copy; All rights reserved by Dhananjay - 2025</p>
+    <ul class="sidebar-links">
+      <li><a href="#hero" onclick="closeSidebar()">Home</a></li>
+      <li><a href="#about" onclick="closeSidebar()">About</a></li>
+      <li><a href="#skills" onclick="closeSidebar()">Skills</a></li>
+      <li><a href="#projects" onclick="closeSidebar()">Projects</a></li>
+      <li><a href="#contact" onclick="closeSidebar()">Contact</a></li>
+    </ul>
+  </nav>
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+  <!-- Top Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="container nav-content">
+        <button class="mobile-nav-toggle" id="navToggle" aria-label="Open menu">
+          <i class='bx bx-menu'></i>
+        </button>
+        <div class="logo desktop-logo">Dhananjay Sah</div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="theme-switch">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle dark and light mode" />
+          <label class="theme-slider" for="theme-toggle">
+            <i class='bx bx-moon'></i>
+            <i class='bx bx-sun'></i>
+          </label>
         </div>
-    </footer>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-content">
+        <img src="pp (1).png" alt="Dhananjay Sah" class="profile-img">
+        <h1>Hello, I'm <span class="highlight">Dhananjay Sah</span></h1>
+        <p class="subtitle">Student | Aspiring Developer</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/dhananjaysah46" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+          <a href="https://github.com/dhananjaysah46" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+          <a href="https://www.facebook.com/dhananjay.sah.46" target="_blank" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+          <a href="https://www.instagram.com/dhananjay.sah.22" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+        </div>
+        <a href="Dhananjay-cv.pdf" class="btn" download>Download Resume</a>
+      </div>
+    </section>
+    <section id="about" class="about section">
+  <div class="container">
+    <h2>About Me</h2>
+    <div class="about-card">
+      <div class="about-card-photo">
+        <img src="photo.jpg" alt="Dhananjay Sah" class="about-img">
+      </div>
+      <div class="about-card-content">
+        <h3 class="about-title">Hi, I'm <span class="about-highlight">Dhananjay Sah</span> 👋</h3>
+        <p class="about-description">
+          I'm a passionate <strong>student</strong> and aspiring developer with a love for creativity, technology, and continuous learning.<br>
+          I thrive in collaborative environments and always seek out new challenges and opportunities to grow.
+        </p>
+        <ul class="about-info-list">
+          <li><i class='bx bx-user'></i> <strong>Name:</strong> Dhananjay Sah</li>
+          <li><i class='bx bx-phone'></i> <strong>Phone:</strong> +977 9817700126, +977 9765834172</li>
+          <li><i class='bx bx-envelope'></i> <strong>Email:</strong> dhanajusah123@gmail.com</li>
+          <li><i class='bx bx-map'></i> <strong>Location:</strong> Madhyapur Thimi, Bhaktapur, Bagmati, Nepal</li>
+        </ul>
+        <div class="about-tags">
+          <span class="about-tag about-tag-exp">6 Months Intern</span>
+          <span class="about-tag about-tag-proj">5+ Projects</span>
+          <span class="about-tag about-tag-support">Online 24/7</span>
+        </div>
+        <div class="about-education">
+          <h4>Education</h4>
+          <ul>
+            <li>2023-2026: <span>Bachelor in Computer Application (BCA), TU</span></li>
+            <li>2020-2022: <span>High School/+2 (Diploma in Civil Engineering)</span></li>
+            <li>2010-2019: <span>Middle School</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="skills" class="skills section">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <div class="skill">
+            <span>HTML/CSS</span>
+            <div class="skill-bar"><div class="skill-level" data-level="80"></div></div>
+          </div>
+          <div class="skill">
+            <span>JavaScript</span>
+            <div class="skill-bar"><div class="skill-level" data-level="60"></div></div>
+          </div>
+          <div class="skill">
+            <span>React</span>
+            <div class="skill-bar"><div class="skill-level" data-level="30"></div></div>
+          </div>
+          <div class="skill">
+            <span>Angular</span>
+            <div class="skill-bar"><div class="skill-level" data-level="10"></div></div>
+          </div>
+          <div class="skill">
+            <span>Java</span>
+            <div class="skill-bar"><div class="skill-level" data-level="80"></div></div>
+          </div>
+          <div class="skill">
+            <span>PHP</span>
+            <div class="skill-bar"><div class="skill-level" data-level="60"></div></div>
+          </div>
+          <div class="skill">
+            <span>Node.js</span>
+            <div class="skill-bar"><div class="skill-level" data-level="20"></div></div>
+          </div>
+          <div class="skill">
+            <span>Python</span>
+            <div class="skill-bar"><div class="skill-level" data-level="30"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="projects section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-cards">
+          <div class="project-card">
+            <h3>Portfolio Website</h3>
+            <p>Modern responsive portfolio using HTML, CSS, and JavaScript. Features mobile sidebar navigation, animated skill bars, and project showcase.</p>
+            <a href="https://github.com/dhananjaysah46/Portfolio-website" target="_blank">View on GitHub</a>
+          </div>
+          <div class="project-card">
+            <h3>Student Management System</h3>
+            <p>Web app for managing student records, built with PHP, MySQL, and Bootstrap. Includes CRUD and authentication.</p>
+            <a href="#" target="_blank">View Project</a>
+          </div>
+          <div class="project-card">
+            <h3>Weather App</h3>
+            <p>Simple weather dashboard using JavaScript and OpenWeatherMap API, with clean UI and real-time updates.</p>
+            <a href="#" target="_blank">View Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="contact-section-card">
+  <div class="container">
+    <h2>Contact Me</h2>
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p><i class='bx bx-phone'></i> +977-9817700126, +977-9765834172</p>
+      <p><i class='bx bx-envelope'></i> dhanjusah123@gmail.com</p>
+      <p><i class='bx bx-map'></i> Madhyapur Thimi, Bhaktapur, Bagmati, Nepal</p>
+    </div>
+  </div>
+  </section>
+  </main>
+  <footer>
+    <div class="container footer-content">
+      <p>© 2025 Dhananjay Sah. All rights reserved.</p>
+      <div>
+        <a href="https://github.com/dhananjaysah46" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+        <a href="https://www.linkedin.com/in/dhananjaysah46" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        <a href="#" target="_blank" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+        <a href="https://www.instagram.com/dhananjay.sah.22" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>
+  // Sidebar mobile menu logic
+  function openSidebar() {
+    if(window.innerWidth < 900) {
+      document.getElementById('sidebar').classList.add('open');
+      document.getElementById('sidebarOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-    <!-- MAIN JS -->
-    <script src="main.js"></script>  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger to open
+    document.getElementById('navToggle').addEventListener('click', openSidebar);
+    // Close button in sidebar
+    document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
+    // Overlay click to close
+    document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+
+    // Animate skill bars when visible
+    function animateSkills() {
+      const skills = document.querySelectorAll('.skill-level');
+      skills.forEach(skill => {
+        const level = skill.getAttribute('data-level');
+        skill.style.width = level + '%';
+      });
+    }
+
+    let skillsSection = document.querySelector('.skills');
+    let animated = false;
+    window.addEventListener('scroll', function() {
+      if (!skillsSection) return;
+      const rect = skillsSection.getBoundingClientRect();
+      if (!animated && rect.top < window.innerHeight - 100) {
+        animateSkills();
+        animated = true;
+      }
+    });
+
+    // Contact form alert
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for reaching out, Dhananjay will get back to you soon!');
+        contactForm.reset();
+      });
+    }
+
+    // Theme switch
+    const themeToggle = document.getElementById('theme-toggle');
+    function setTheme(mode) {
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+        themeToggle.checked = true;
+      } else {
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.checked = false;
+      }
+    }
+    themeToggle.addEventListener('change', function() {
+      setTheme(this.checked ? 'light' : 'dark');
+    });
+    // On load, read from localStorage
+    if (localStorage.getItem('theme') === 'light') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  });
+
+  // For sidebar links (so they work in onclick in HTML)
+  window.closeSidebar = closeSidebar;
+  </script>
 </body>
 </html>
