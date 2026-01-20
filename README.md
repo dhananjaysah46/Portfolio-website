@@ -238,7 +238,7 @@ This project is licensed under the MIT License - see below for details:
 ```
 MIT License
 
-Copyright (c) 2025 Dhananjay Sah
+Copyright (c) 2026 - Dhananjay Sah
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -262,9 +262,9 @@ SOFTWARE.
 ## 👨‍💻 Author
 
 **Dhananjay Sah**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@dhananjaysah46](https://github.com/dhananjaysah46)
+- LinkedIn: [Dhananjay Sah](https://linkedin.com/in/dhananjaysah.46)
+- Email: dhananjaysah07@email.com
 
 ## 🙏 Acknowledgments
 
@@ -278,7 +278,7 @@ SOFTWARE.
 
 If you have any questions or run into issues, feel free to:
 - Open an [issue](https://github.com/yourusername/portfolio/issues)
-- Contact me via [email](mailto:your.email@example.com)
+- Contact me via [email](mailto:dhananjaysah07@gmail.com)
 - Connect on [LinkedIn](https://linkedin.com/in/yourprofile)
 
 ## ⭐ Show Your Support
