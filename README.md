@@ -263,7 +263,7 @@ SOFTWARE.
 
 **Dhananjay Sah**
 - GitHub: [@dhananjaysah46](https://github.com/dhananjaysah46)
-- LinkedIn: [Dhananjay Sah](https://linkedin.com/in/dhananjaysah.46)
+- LinkedIn: [Dhananjay Sah](https://www.linkedin.com/in/dhananjaysah46)
 - Email: dhananjaysah07@email.com
 
 ## 🙏 Acknowledgments
@@ -279,7 +279,7 @@ SOFTWARE.
 If you have any questions or run into issues, feel free to:
 - Open an [issue](https://github.com/yourusername/portfolio/issues)
 - Contact me via [email](mailto:dhananjaysah07@gmail.com)
-- Connect on [LinkedIn](https://linkedin.com/in/yourprofile)
+- Connect on [LinkedIn](https://www.linkedin.com/in/dhananjaysah46)
 
 ## ⭐ Show Your Support
 
