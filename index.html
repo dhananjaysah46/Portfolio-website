@@ -1,220 +1,401 @@
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dhananjay Sah - Full-Stack Developer & BCA Student Portfolio">
-    <title>Dhananjay Sah | Full-Stack Developer</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dhananjay Sah - Full-Stack Developer & BCA Student Portfolio">
+  <title>Dhananjay Sah | Portfolio</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-      rel="stylesheet">
-  </head>
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+    rel="stylesheet">
+</head>
 
-  <body class="dark-theme">
+<body class="dark-theme">
 
-    <!-- Progress Bar -->
-    <div id="progress-bar"></div>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader">
+      <div class="logo-box-loader">DS</div>
+      <div class="loading-bar"></div>
+      <p>Loading Experience...</p>
+    </div>
+  </div>
 
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobile-overlay"></div>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="cursor-follower"></div>
 
-    <!-- Back to Top -->
-    <button id="backToTop"><i class='bx bx-up-arrow-alt'></i></button>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
 
-    <!-- Navbar -->
-    <nav id="navbar">
-      <div class="container nav-container">
-        <a href="#home" class="logo">
-          <div class="logo-box">DS</div>
-          <span class="logo-text">Dhananjay<span>.</span></span>
-        </a>
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
 
-        <div class="nav-wrapper">
-          <ul class="nav-menu">
-            <li><a href="#home" class="nav-item active" data-section="home"><i
-                  class='bx bx-home-alt-2'></i><span>Home</span></a></li>
-            <li><a href="#about" class="nav-item" data-section="about"><i
-                  class='bx bx-user-circle'></i><span>About</span></a></li>
-            <li><a href="#skills" class="nav-item" data-section="skills"><i
-                  class='bx bx-code-alt'></i><span>Skills</span></a></li>
-            <li><a href="#projects" class="nav-item" data-section="projects"><i
-                  class='bx bx-grid-alt'></i><span>Work</span></a></li>
-          </ul>
-        </div>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
 
-        <div class="nav-actions">
-          <div class="theme-toggle" id="theme-btn"><i class='bx bx-moon'></i></div>
-          <a href="#contact" class="btn-hire-nav">Hire Me</a>
-          <div class="menu-icon" id="open-menu"><i class='bx bx-menu-alt-right'></i></div>
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- Back to Top -->
+  <button id="backToTop"><i class='bx bx-up-arrow-alt'></i></button>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        <div class="logo-box">DS</div>
+        <span class="logo-text">Dhananjay<span>.</span></span>
+      </a>
+
+      <div class="nav-wrapper">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-item active" data-section="home"><i
+                class='bx bx-home-alt-2'></i><span>Home</span></a></li>
+          <li><a href="#about" class="nav-item" data-section="about"><i
+                class='bx bx-user-circle'></i><span>About</span></a></li>
+          <li><a href="#journey" class="nav-item" data-section="journey"><i
+                class='bx bx-map'></i><span>Journey</span></a></li>
+          <li><a href="#skills" class="nav-item" data-section="skills"><i
+                class='bx bx-code-alt'></i><span>Skills</span></a></li>
+          <li><a href="#projects" class="nav-item" data-section="projects"><i
+                class='bx bx-grid-alt'></i><span>Work</span></a></li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <div class="theme-toggle" id="theme-btn"><i class='bx bx-moon'></i></div>
+        <a href="#contact" class="btn-hire-nav">Hire Me</a>
+        <div class="menu-icon" id="open-menu"><i class='bx bx-menu-alt-right'></i></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="logo">DS<span>.</span></span>
+      <div class="close-btn" id="close-menu"><i class='bx bx-x'></i></div>
+    </div>
+    <ul class="sidebar-links">
+      <li><a href="#home"><i class='bx bx-home-alt-2'></i> Home</a></li>
+      <li><a href="#about"><i class='bx bx-user-circle'></i> About</a></li>
+      <li><a href="#journey"><i class='bx bx-map'></i> Journey</a></li>
+      <li><a href="#skills"><i class='bx bx-code-alt'></i> Skills</a></li>
+      <li><a href="#projects"><i class='bx bx-grid-alt'></i> Work</a></li>
+      <li><a href="#contact" class="sidebar-cta">Contact Me</a></li>
+    </ul>
+  </aside>
+
+  <!-- Mobile Bottom Navigation -->
+  <div class="mobile-nav-bottom">
+    <a href="#home" class="mobile-nav-item active" data-section="home">
+      <i class='bx bx-home-alt-2'></i>
+      <span>Home</span>
+    </a>
+    <a href="#about" class="mobile-nav-item" data-section="about">
+      <i class='bx bx-user-circle'></i>
+      <span>About</span>
+    </a>
+    <a href="#projects" class="mobile-nav-item" data-section="projects">
+      <i class='bx bx-briefcase'></i>
+      <span>Work</span>
+    </a>
+    <a href="#contact" class="mobile-nav-item" data-section="contact">
+      <i class='bx bx-envelope'></i>
+      <span>Contact</span>
+    </a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-bg-animation"></div>
+      <div class="container">
+        <div class="hero-content scroll-reveal">
+          <div class="avail-badge"><span class="dot"></span> BCA 3rd Year Student</div>
+          <h1>Crafting Logic <br> With <span class="gradient-text">Precision.</span></h1>
+          <p class="lead">Aspiring Full-Stack Developer specializing in MERN, Java, and Python. Turning complex problems
+            into elegant, high-performance web solutions.</p>
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary btn-ripple">
+              <span>View Projects</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </a>
+            <a href="#contact" class="btn btn-outline btn-ripple">
+              <i class='bx bx-envelope'></i>
+              <span>Connect</span>
+            </a>
+          </div>
+          <div class="scroll-indicator">
+            <i class='bx bx-mouse'></i>
+            <span>Scroll Down</span>
+          </div>
         </div>
       </div>
-    </nav>
+    </section>
 
-    <!-- Mobile Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <span class="logo">DS<span>.</span></span>
-        <div class="close-btn" id="close-menu"><i class='bx bx-x'></i></div>
-      </div>
-      <ul class="sidebar-links">
-        <li><a href="#home"><i class='bx bx-home-alt-2'></i> Home</a></li>
-        <li><a href="#about"><i class='bx bx-user-circle'></i> About</a></li>
-        <li><a href="#skills"><i class='bx bx-code-alt'></i> Skills</a></li>
-        <li><a href="#projects"><i class='bx bx-grid-alt'></i> Work</a></li>
-        <li><a href="#contact" class="sidebar-cta">Contact Me</a></li>
-      </ul>
-    </aside>
-
-    <main>
-      <!-- Hero Section -->
-      <section id="home" class="hero">
-        <div class="container">
-          <div class="hero-content scroll-reveal">
-            <div class="avail-badge"><span class="dot"></span> BCA 3rd Year Student</div>
-            <h1>Crafting Logic <br> With <span class="gradient-text">Precision.</span></h1>
-            <p class="lead">Aspiring Full-Stack Developer specializing in MERN, Java, and Python. Turning complex problems
-              into elegant, high-performance web solutions.</p>
-            <div class="hero-btns">
-              <a href="#projects" class="btn btn-primary">View Projects <i class='bx bx-right-arrow-alt'></i></a>
-              <a href="#contact" class="btn btn-outline"><i class='bx bx-envelope'></i> Connect</a>
-            </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title scroll-reveal">About <span class="gradient-text">Me</span></h2>
+        <div class="bento-grid reveal-container">
+          <div class="bento-box glass bio stagger-item">
+            <h3>Who I Am</h3>
+            <p>I'm a technology enthusiast pursuing BCA at Tribhuvan University. My passion lies in building scalable
+              backend architectures and refined user interfaces that solve real-world problems. I believe in writing
+              clean, maintainable code and continuously learning new technologies.</p>
+          </div>
+          <div class="bento-box glass edu stagger-item center">
+            <i class='bx bxs-graduation floating-icon'></i>
+            <h4>Education</h4>
+            <p>BCA Student (3rd Year)<br>Tribhuvan University</p>
+          </div>
+          <div class="bento-box glass loc stagger-item center">
+            <i class='bx bxs-time floating-icon'></i>
+            <h4 id="local-time">00:00:00</h4>
+            <p>Nepal Time (NPT)</p>
           </div>
         </div>
-      </section>
 
-      <!-- About Section -->
-      <section id="about" class="section">
-        <div class="container">
-          <h2 class="section-title scroll-reveal">About <span class="gradient-text">Me</span></h2>
-          <div class="bento-grid reveal-container">
-            <div class="bento-box glass bio stagger-item">
-              <h3>Who I Am</h3>
-              <p>I'm a technology enthusiast pursuing BCA at Tribhuvan University. My passion lies in building scalable
-                backend architectures and refined user interfaces that solve real-world problems. I believe in writing
-                clean, maintainable code and continuously learning new technologies.</p>
-            </div>
-            <div class="bento-box glass edu stagger-item center">
-              <i class='bx bxs-graduation'></i>
-              <h4>Education</h4>
-              <p>BCA Student (3rd Year)<br>Tribhuvan University</p>
-            </div>
-            <div class="bento-box glass loc stagger-item center">
-              <i class='bx bxs-time'></i>
-              <h4 id="local-time">00:00:00</h4>
-              <p>Nepal Time (NPT)</p>
+        <!-- Resume Download Section -->
+        <div class="resume-section glass scroll-reveal">
+          <div class="resume-content">
+            <i class='bx bxs-file-pdf'></i>
+            <div>
+              <h3>Download My Resume</h3>
+              <p>Get a detailed overview of my skills and experience</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section id="skills" class="section">
-        <div class="container">
-          <h2 class="section-title scroll-reveal">Technical <span class="gradient-text">Stack</span></h2>
-          <div class="skill-grid reveal-container">
-            <div class="skill-card glass stagger-item"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-react-original colored"></i><span>React</span>
-            </div>
-            <div class="skill-card glass stagger-item"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span>
-            </div>
-            <div class="skill-card glass stagger-item"><i
-                class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-java-plain colored"></i><span>Java</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-python-plain colored"></i><span>Python</span>
-            </div>
-            <div class="skill-card glass stagger-item"><i class="devicon-django-plain colored"></i><span>Django</span>
-            </div>
-            <div class="skill-card glass stagger-item"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
-            <div class="skill-card glass stagger-item"><i class="devicon-github-original colored"></i><span>GitHub</span>
-            </div>
-            <div class="skill-card glass stagger-item"><i class="devicon-postman-plain colored"></i><span>REST API</span>
-            </div>
-
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" class="section">
-        <div class="container">
-          <h2 class="section-title scroll-reveal">Featured <span class="gradient-text">Work</span></h2>
-          <div class="project-grid reveal-container">
-            <div class="project-card glass stagger-item">
-              <div class="p-icon"><i class='bx bx-wallet'></i></div>
-              <div class="p-info">
-                <h3>Expense Manager</h3>
-                <p>Full-stack Django application for tracking expenses with user authentication, data visualization, and
-                  comprehensive financial analytics.</p>
-                <div class="p-tags"><span>Python Django</span><span>JWT Auth</span><span>Charts</span></div>
-              </div>
-            </div>
-            <div class="project-card glass stagger-item">
-              <!-- Solid icon provides better contrast on glass backgrounds -->
-              <div class="p-icon"><i class='bx bxs-cloud-sun'></i></div>
-
-              <div class="p-info">
-                <h3>Weather App</h3>
-                <p>Python-based weather application with real-time forecasting, location search, and detailed
-                  meteorological data via REST API integration.</p>
-
-                <div class="p-tags">
-                  <span>Python</span>
-                  <span>REST API</span>
-                  <span>Tkinter</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section">
-        <div class="container">
-          <div class="contact-card glass scroll-reveal">
-            <h2>Get In <span class="gradient-text">Touch</span></h2>
-            <p style="color: var(--text-dim); margin-bottom: 30px;">Have a project in mind? Let's work together to bring
-              your ideas to life.</p>
-            <form id="contact-form">
-              <div class="form-row">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-              </div>
-              <textarea name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-              <div class="center">
-                <button type="submit" id="submit-btn" class="btn btn-primary">
-                  <span id="btn-text">Send Message</span>
-                  <i class='bx bx-send'></i>
-                </button>
-              </div>
-              <div id="form-msg"></div>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <p>&copy; 2026 Dhananjay Sah. Built with passion and precision.</p>
-        <div class="socials">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="GitHub"><i
-              class='bx bxl-github'></i></a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn"><i
-              class='bx bxl-linkedin'></i></a>
-          <a href="mailto:your.email@example.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+          <a href="resume.pdf" download class="btn btn-primary btn-ripple" id="download-resume">
+            <i class='bx bx-download'></i> Download CV
+          </a>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <!-- Journey/Timeline Section -->
+    <section id="journey" class="section">
+      <div class="container">
+        <h2 class="section-title scroll-reveal">My <span class="gradient-text">Journey</span></h2>
+        <div class="timeline reveal-container">
+          <div class="timeline-item stagger-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass">
+              <span class="timeline-date">2023 - Present</span>
+              <h3>BCA Student</h3>
+              <p>Tribhuvan University</p>
+              <p class="timeline-desc">Currently in 3rd year, focusing on Full-Stack Development, Data Structures, and Software Engineering principles.</p>
+            </div>
+          </div>
+          <div class="timeline-item stagger-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass">
+              <span class="timeline-date">2023</span>
+              <h3>Started Web Development</h3>
+              <p>Self-taught Journey</p>
+              <p class="timeline-desc">Began learning MERN stack and built multiple projects to strengthen my development skills.</p>
+            </div>
+          </div>
+          <div class="timeline-item stagger-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass">
+              <span class="timeline-date">2022</span>
+              <h3>First Programming Project</h3>
+              <p>Python & Java</p>
+              <p class="timeline-desc">Created my first console application, sparking a passion for software development.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  </html>
+    <!-- Skills Section with Tech Stack Visualization -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title scroll-reveal">Technical <span class="gradient-text">Stack</span></h2>
+        
+        <!-- Tech Stack Layers -->
+        <div class="tech-stack-visual scroll-reveal">
+          <div class="tech-layer frontend glass">
+            <h3><i class='bx bx-palette'></i> Frontend</h3>
+            <div class="tech-icons">
+              <div class="tech-item">
+                <i class="devicon-html5-plain colored"></i>
+                <span>HTML5</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-css3-plain colored"></i>
+                <span>CSS3</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-javascript-plain colored"></i>
+                <span>JavaScript</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-bootstrap-plain colored"></i>
+                <span>Bootstrap</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tech-layer backend glass">
+            <h3><i class='bx bx-server'></i> Backend</h3>
+            <div class="tech-icons">
+              <div class="tech-item">
+                <i class="devicon-nodejs-plain colored"></i>
+                <span>Node.js</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-django-plain colored"></i>
+                <span>Django</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-mysql-plain colored"></i>
+                <span>MySQL</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-postman-plain colored"></i>
+                <span>REST API</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tech-layer languages glass">
+            <h3><i class='bx bx-code-curly'></i> Languages & Tools</h3>
+            <div class="tech-icons">
+              <div class="tech-item">
+                <i class="devicon-java-plain colored"></i>
+                <span>Java</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-python-plain colored"></i>
+                <span>Python</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-git-plain colored"></i>
+                <span>Git</span>
+              </div>
+              <div class="tech-item">
+                <i class="devicon-github-original"></i>
+                <span>GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title scroll-reveal">Featured <span class="gradient-text">Work</span></h2>
+        <div class="project-grid reveal-container">
+          
+          <!-- Project 1 -->
+          <div class="project-card glass stagger-item">
+            <div class="project-thumbnail">
+              <div class="project-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <i class='bx bx-wallet'></i>
+              </div>
+              <div class="project-overlay">
+                <a href="#" class="project-link" title="Live Demo"><i class='bx bx-link-external'></i></a>
+                <a href="#" class="project-github" title="GitHub"><i class='bx bxl-github'></i></a>
+              </div>
+            </div>
+            <div class="p-info">
+              <span class="featured-badge">Featured</span>
+              <h3>Expense Manager</h3>
+              <p>Full-stack Django application for tracking expenses with user authentication, data visualization, and comprehensive financial analytics.</p>
+              <div class="p-tags">
+                <span><i class="devicon-python-plain"></i> Python</span>
+                <span><i class="devicon-django-plain"></i> Django</span>
+                <span>Charts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card glass stagger-item">
+            <div class="project-thumbnail">
+              <div class="project-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <i class='bx bxs-cloud-sun'></i>
+              </div>
+              <div class="project-overlay">
+                <a href="#" class="project-link" title="Live Demo"><i class='bx bx-link-external'></i></a>
+                <a href="https://github.com/dhananjaysah46/Weather_App-Python" class="project-github" title="GitHub"><i class='bx bxl-github'></i></a>
+              </div>
+            </div>
+            <div class="p-info">
+              <h3>Weather App</h3>
+              <p>Python-based weather application with real-time forecasting, location search, and detailed meteorological data via REST API integration.</p>
+              <div class="p-tags">
+                <span><i class="devicon-python-plain"></i> Python</span>
+                <span>REST API</span>
+                <span>Tkinter</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-card glass scroll-reveal">
+          <h2>Get In <span class="gradient-text">Touch</span></h2>
+          <p style="color: var(--text-dim); margin-bottom: 30px;">Have a project in mind? Let's work together to bring
+            your ideas to life.</p>
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" name="name" id="name-input" placeholder="Your Name" required>
+                <i class='bx bx-check form-icon valid-icon'></i>
+                <i class='bx bx-x form-icon invalid-icon'></i>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" id="email-input" placeholder="Your Email" required>
+                <i class='bx bx-check form-icon valid-icon'></i>
+                <i class='bx bx-x form-icon invalid-icon'></i>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea name="message" id="message-input" rows="5" placeholder="Tell me about your project..." required maxlength="500"></textarea>
+              <span class="char-counter">0/500</span>
+            </div>
+            <div class="center">
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-ripple">
+                <span id="btn-text">Send Message</span>
+                <i class='bx bx-send'></i>
+              </button>
+            </div>
+            <div id="form-msg"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 - Dhananjay Sah. Built with passion and precision.</p>
+      <div class="socials">
+        <a href="https://github.com/dhananjaysah46" target="_blank" rel="noopener" aria-label="GitHub"><i
+            class='bx bxl-github'></i></a>
+        <a href="https://www.linkedin.com/in/dhananjaysah46/" target="_blank" rel="noopener" aria-label="LinkedIn"><i
+            class='bx bxl-linkedin'></i></a>
+        <a href="mailto:dhananjay07sah@gmail.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
