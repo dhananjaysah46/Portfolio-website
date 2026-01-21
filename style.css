@@ -1171,6 +1171,15 @@ nav {
   font-size: 1rem;
 }
 
+.weather-gradient {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+
+.weather-gradient i {
+  color: white !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
 /* === CONTACT SECTION === */
 .contact-card {
   max-width: 700px;
