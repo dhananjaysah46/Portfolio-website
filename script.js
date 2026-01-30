@@ -10,6 +10,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTop = document.getElementById('backToTop');
   const preloader = document.getElementById('preloader');
 
+  // ==================== SECURITY: INPUT SANITIZATION ====================
+  function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
+  function validateName(name) {
+    // Only allow letters, spaces, hyphens, and apostrophes
+    const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+    return nameRegex.test(name);
+  }
+
+  function validateMessage(message) {
+    // Check length and disallow suspicious patterns
+    if (message.length < 10 || message.length > 500) return false;
+    
+    // Block common injection patterns
+    const suspiciousPatterns = [
+      /<script/i,
+      /javascript:/i,
+      /on\w+\s*=/i,
+      /<iframe/i,
+      /eval\(/i,
+      /expression\(/i
+    ];
+    
+    return !suspiciousPatterns.some(pattern => pattern.test(message));
+  }
+
+  // ==================== SECURITY: RATE LIMITING ====================
+  let lastSubmitTime = 0;
+  const SUBMIT_COOLDOWN = 5000; // 5 seconds between submissions
+
+  function canSubmitForm() {
+    const now = Date.now();
+    if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+      return false;
+    }
+    lastSubmitTime = now;
+    return true;
+  }
+
   // ==================== PRELOADER ====================
   window.addEventListener('load', () => {
     setTimeout(() => {
@@ -33,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 100);
     });
 
-    // Cursor effects on interactive elements
     const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, input, textarea');
     
     interactiveElements.forEach(el => {
@@ -112,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
       particle.draw();
     });
 
-    // Draw connections
     particles.forEach((p1, i) => {
       particles.slice(i + 1).forEach(p2 => {
         const dx = p1.x - p2.x;
@@ -140,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toastContainer = document.getElementById('toast-container');
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.textContent = message;
+    toast.textContent = sanitizeInput(message); // Sanitize toast messages
     
     toastContainer.appendChild(toast);
     
@@ -177,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update desktop nav
     navItems.forEach(item => {
       item.classList.remove('active');
       if (item.getAttribute('href').includes(current)) {
@@ -185,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update mobile bottom nav
     mobileNavItems.forEach(item => {
       item.classList.remove('active');
       if (item.getAttribute('href').includes(current)) {
@@ -193,11 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Progress Bar
     const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('progress-bar').style.width = scrolled + '%';
     
-    // Back to Top Button
     if (window.scrollY > 500) {
       backToTop.style.display = 'flex';
     } else {
@@ -219,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(`${isLight ? 'Light' : 'Dark'} theme activated`, 'success');
   });
 
-  // Load saved theme
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'light') {
     document.body.classList.add('light-theme');
@@ -269,7 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadBtn = document.getElementById('download-resume');
   if (downloadBtn) {
     downloadBtn.addEventListener('click', (e) => {
-      // If you don't have a resume file yet, prevent download and show message
       const hasResume = downloadBtn.getAttribute('href') !== '#';
       
       if (!hasResume) {
@@ -281,17 +321,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==================== FORM VALIDATION ====================
+  // ==================== FORM VALIDATION WITH SECURITY ====================
   const nameInput = document.getElementById('name-input');
   const emailInput = document.getElementById('email-input');
   const messageInput = document.getElementById('message-input');
   const charCounter = document.querySelector('.char-counter');
 
-  // Name validation
+  // Name validation with security
   if (nameInput) {
     nameInput.addEventListener('input', (e) => {
       const value = e.target.value.trim();
-      if (value.length >= 2) {
+      
+      if (validateName(value)) {
         nameInput.classList.add('valid');
         nameInput.classList.remove('invalid');
       } else if (value.length > 0) {
@@ -301,15 +342,24 @@ document.addEventListener('DOMContentLoaded', () => {
         nameInput.classList.remove('valid', 'invalid');
       }
     });
+
+    // Prevent paste of malicious content
+    nameInput.addEventListener('paste', (e) => {
+      setTimeout(() => {
+        const value = nameInput.value.trim();
+        if (!validateName(value)) {
+          nameInput.value = value.replace(/[^a-zA-Z\s'-]/g, '');
+        }
+      }, 0);
+    });
   }
 
   // Email validation
   if (emailInput) {
     emailInput.addEventListener('input', (e) => {
       const value = e.target.value.trim();
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
-      if (emailRegex.test(value)) {
+      if (validateEmail(value)) {
         emailInput.classList.add('valid');
         emailInput.classList.remove('invalid');
       } else if (value.length > 0) {
@@ -321,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Character counter
+  // Message validation with character counter
   if (messageInput && charCounter) {
     messageInput.addEventListener('input', (e) => {
       const count = e.target.value.length;
@@ -335,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==================== FORM SUBMISSION ====================
+  // ==================== SECURE FORM SUBMISSION ====================
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   const btnText = document.getElementById('btn-text');
@@ -344,21 +394,55 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Rate limiting check
+    if (!canSubmitForm()) {
+      showToast('Please wait before sending another message', 'error');
+      return;
+    }
+
+    // Get form data
+    const rawName = nameInput.value.trim();
+    const rawEmail = emailInput.value.trim();
+    const rawMessage = messageInput.value.trim();
+
+    // Validate all inputs
+    if (!validateName(rawName)) {
+      showToast('Please enter a valid name (2-50 characters, letters only)', 'error');
+      nameInput.focus();
+      return;
+    }
+
+    if (!validateEmail(rawEmail)) {
+      showToast('Please enter a valid email address', 'error');
+      emailInput.focus();
+      return;
+    }
+
+    if (!validateMessage(rawMessage)) {
+      showToast('Message must be 10-500 characters and contain no suspicious content', 'error');
+      messageInput.focus();
+      return;
+    }
+
+    // Sanitize inputs
+    const sanitizedName = sanitizeInput(rawName);
+    const sanitizedEmail = sanitizeInput(rawEmail);
+    const sanitizedMessage = sanitizeInput(rawMessage);
+
     // Disable button
     submitBtn.disabled = true;
     btnText.textContent = 'Sending...';
 
-    // Get form data
-    const formData = new FormData(form);
-    
-    // Add your Web3Forms access key here
+    // Web3Forms access key
     const WEB3FORMS_ACCESS_KEY = '64f1d5c8-b451-45de-b0e0-7c55d8dbadb9';
     
     const object = {
       access_key: WEB3FORMS_ACCESS_KEY,
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message')
+      name: sanitizedName,
+      email: sanitizedEmail,
+      message: sanitizedMessage,
+      // Add honeypot field for spam protection
+      botcheck: false
     };
 
     const json = JSON.stringify(object);
@@ -376,13 +460,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (result.success) {
-        // Success
         formMsg.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
         formMsg.className = 'center success';
         showToast('Message sent successfully!', 'success');
         form.reset();
         
-        // Reset validation states
         nameInput.classList.remove('valid', 'invalid');
         emailInput.classList.remove('valid', 'invalid');
         charCounter.textContent = '0/500';
@@ -461,7 +543,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add ripple animation CSS
   const style = document.createElement('style');
   style.textContent = `
     @keyframes ripple-animation {
