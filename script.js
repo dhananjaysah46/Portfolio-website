@@ -603,4 +603,171 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   `;
   document.head.appendChild(rainbowStyle);
+
+  // ==================== DEVELOPER TOOLS PROTECTION (COSMETIC ONLY) ====================
+  
+  // Disable right-click
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    showToast('⚠️ Right-click is disabled', 'error');
+    return false;
+  });
+
+  // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+  document.addEventListener('keydown', (e) => {
+    // F12 - Developer Tools
+    if (e.key === 'F12') {
+      e.preventDefault();
+      showToast('⚠️ Developer tools are disabled', 'error');
+      return false;
+    }
+    
+    // Ctrl+Shift+I - Inspect Element
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+      e.preventDefault();
+      showToast('⚠️ Inspect element is disabled', 'error');
+      return false;
+    }
+    
+    // Ctrl+Shift+J - Console
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+      e.preventDefault();
+      showToast('⚠️ Console is disabled', 'error');
+      return false;
+    }
+    
+    // Ctrl+Shift+C - Inspect Element (alternate)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+      e.preventDefault();
+      showToast('⚠️ Inspect element is disabled', 'error');
+      return false;
+    }
+    
+    // Ctrl+U - View Source
+    if (e.ctrlKey && e.key === 'u') {
+      e.preventDefault();
+      showToast('⚠️ View source is disabled', 'error');
+      return false;
+    }
+    
+    // Ctrl+S - Save Page
+    if (e.ctrlKey && e.key === 's') {
+      e.preventDefault();
+      showToast('⚠️ Saving page is disabled', 'error');
+      return false;
+    }
+
+    // Ctrl+Shift+K - Firefox Console
+    if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+      e.preventDefault();
+      return false;
+    }
+
+    // Command+Option+I (Mac)
+    if (e.metaKey && e.altKey && e.key === 'i') {
+      e.preventDefault();
+      return false;
+    }
+
+    // Command+Option+J (Mac)
+    if (e.metaKey && e.altKey && e.key === 'j') {
+      e.preventDefault();
+      return false;
+    }
+
+    // Command+Option+C (Mac)
+    if (e.metaKey && e.altKey && e.key === 'c') {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Disable text selection
+  document.body.style.userSelect = 'none';
+  document.body.style.webkitUserSelect = 'none';
+  document.body.style.mozUserSelect = 'none';
+  document.body.style.msUserSelect = 'none';
+
+  // Disable drag
+  document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // Detect DevTools opening (basic detection)
+  let devtoolsOpen = false;
+  const threshold = 160;
+
+  const detectDevTools = () => {
+    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+    
+    if ((widthThreshold || heightThreshold) && !devtoolsOpen) {
+      devtoolsOpen = true;
+      // Optionally redirect or show warning
+      showToast('⚠️ Please close developer tools', 'error');
+      
+      // Uncomment below to blur content when devtools detected
+      // document.body.style.filter = 'blur(10px)';
+      
+      // Uncomment below to redirect
+      // window.location.href = 'about:blank';
+    } else if (!widthThreshold && !heightThreshold && devtoolsOpen) {
+      devtoolsOpen = false;
+      // document.body.style.filter = 'none';
+    }
+  };
+
+  // Check every second
+  setInterval(detectDevTools, 1000);
+
+  // Advanced: Detect DevTools via console
+  const devToolsChecker = () => {
+    const element = new Image();
+    Object.defineProperty(element, 'id', {
+      get: function() {
+        devtoolsOpen = true;
+        showToast('⚠️ Developer tools detected!', 'error');
+        // Optional: Blur or redirect here
+      }
+    });
+    console.log(element);
+  };
+
+  // Run devtools checker periodically
+  setInterval(devToolsChecker, 2000);
+
+  // Disable copy
+  document.addEventListener('copy', (e) => {
+    e.preventDefault();
+    showToast('⚠️ Copying is disabled', 'error');
+    return false;
+  });
+
+  // Disable cut
+  document.addEventListener('cut', (e) => {
+    e.preventDefault();
+    showToast('⚠️ Cutting is disabled', 'error');
+    return false;
+  });
+
+  // Clear console periodically
+  setInterval(() => {
+    console.clear();
+  }, 5000);
+
+  // Override console methods
+  console.log = function() {};
+  console.warn = function() {};
+  console.error = function() {};
+  console.info = function() {};
+  console.debug = function() {};
+
+  // Display warning in console before override
+  const originalLog = console.log;
+  setTimeout(() => {
+    originalLog('%c🚨 SECURITY WARNING', 'color: red; font-size: 30px; font-weight: bold;');
+    originalLog('%cThis website is protected. Unauthorized access attempts are logged.', 'font-size: 16px;');
+    originalLog('%c⚠️ If someone told you to paste code here, DO NOT DO IT. It is a scam.', 'color: orange; font-size: 14px;');
+  }, 100);
 });
