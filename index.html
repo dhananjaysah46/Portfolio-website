@@ -1,412 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dhananjay Sah - Full-Stack Developer & BCA Graduate Portfolio">
-  <title>Dhananjay Sah | Portfolio</title>
+  <meta name="description" content="Dhananjay Sah — Django &amp; Python Developer. BCA Student at Tribhuvan University. Building scalable web apps with clean architecture.">
+  <meta name="author" content="Dhananjay Sah">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#020408">
 
-  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-  <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+  <!-- Security headers via meta -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dhananjay Sah — Django & Python Developer">
+  <meta property="og:description" content="BCA student at Tribhuvan University building scalable Django web apps, REST APIs, and elegant interfaces.">
+  <meta property="og:url" content="https://dhananjaysah46.github.io/">
+  <!-- og:image removed — add back once og-image.png is created in your repo -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dhananjay Sah — Django & Python Developer">
+  <meta name="twitter:description" content="BCA student building scalable Django web apps, REST APIs, and elegant interfaces.">
+
+  <title>Dhananjay | Portfolio</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-    rel="stylesheet">
 </head>
+<body>
 
-<body class="dark-theme">
-
-  <!-- Preloader -->
+  <!-- PRELOADER -->
   <div id="preloader">
-    <div class="loader">
-      <div class="logo-box-loader">DS</div>
-      <div class="loading-bar"></div>
-      <p>Loading Experience...</p>
+    <div class="pl-inner">
+      <svg class="pl-ring" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" class="pl-track"/>
+        <circle cx="50" cy="50" r="40" class="pl-arc"/>
+      </svg>
+      <span class="pl-initials">DS</span>
     </div>
+    <p class="pl-text">Loading<span id="pl-pct">0</span>%</p>
+    <button class="pl-skip" onclick="skipPreloader()">skip &rarr;</button>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="cursor-follower"></div>
-
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- Progress Bar -->
+  <!-- SCENE LAYERS -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="grain"></div>
   <div id="progress-bar"></div>
+  <div id="toast-zone"></div>
 
-  <!-- Toast Container -->
-  <div id="toast-container"></div>
+  <!-- CURSOR -->
+  <div class="c-dot" id="c-dot"></div>
+  <div class="c-halo" id="c-halo"></div>
+  <div class="c-label" id="c-label"></div>
 
-  <!-- Mobile Overlay -->
-  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <!-- MOBILE OVERLAY -->
+  <div class="drawer-mask" id="drawer-mask"></div>
 
-  <!-- Back to Top -->
-  <button id="backToTop"><i class='bx bx-up-arrow-alt'></i></button>
+  <!-- BACK TO TOP -->
+  <button id="back-top" aria-label="back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
 
-  <!-- Navbar -->
-  <nav id="navbar">
-    <div class="container nav-container">
-      <a href="#home" class="logo">
-        <div class="logo-box">DS</div>
-        <span class="logo-text">Dhananjay<span>.</span></span>
+  <!-- ═══════ NAV ═══════ -->
+  <header id="site-nav">
+    <a href="#home" class="logo-wrap">
+      <div class="logo-hex">
+        <svg viewBox="0 0 60 52" fill="none"><path d="M30 2L58 18V34L30 50L2 34V18Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span>DS</span>
+      </div>
+      <span class="logo-full">
+        <!-- DhananJaY<b>.</b> -->
+         DhananJaY .
+      </span>
+    </a>
+
+    <nav class="desk-nav" role="navigation" aria-label="Main navigation">
+      <div class="dn-track">
+        <a href="#home"    class="dn-link active" data-sec="home">
+          <span class="dn-icon"><i class="bx bx-home-alt-2"></i></span>
+          <span class="dn-label">Home</span>
+          <span class="dn-active-bg"></span>
+        </a>
+        <a href="#about"   class="dn-link" data-sec="about">
+          <span class="dn-icon"><i class="bx bx-user-circle"></i></span>
+          <span class="dn-label">About</span>
+          <span class="dn-active-bg"></span>
+        </a>
+        <a href="#journey" class="dn-link" data-sec="journey">
+          <span class="dn-icon"><i class="bx bx-map-alt"></i></span>
+          <span class="dn-label">Journey</span>
+          <span class="dn-active-bg"></span>
+        </a>
+        <a href="#skills"  class="dn-link" data-sec="skills">
+          <span class="dn-icon"><i class="bx bx-code-curly"></i></span>
+          <span class="dn-label">Skills</span>
+          <span class="dn-active-bg"></span>
+        </a>
+        <a href="#projects" class="dn-link" data-sec="projects">
+          <span class="dn-icon"><i class="bx bx-grid-alt"></i></span>
+          <span class="dn-label">Work</span>
+          <span class="dn-active-bg"></span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="toggle theme">
+        <i class="bx bx-moon" id="theme-icon"></i>
+      </button>
+      <div class="nav-sep"></div>
+      <a href="#contact" class="nav-hire">
+        <i class="bx bx-paper-plane"></i>
+        <span>Hire Me</span>
       </a>
-
-      <div class="nav-wrapper">
-        <ul class="nav-menu">
-          <li><a href="#home" class="nav-item active" data-section="home"><i
-                class='bx bx-home-alt-2'></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-item" data-section="about"><i
-                class='bx bx-user-circle'></i><span>About</span></a></li>
-          <li><a href="#journey" class="nav-item" data-section="journey"><i
-                class='bx bx-map'></i><span>Journey</span></a></li>
-          <li><a href="#skills" class="nav-item" data-section="skills"><i
-                class='bx bx-code-alt'></i><span>Skills</span></a></li>
-          <li><a href="#projects" class="nav-item" data-section="projects"><i
-                class='bx bx-grid-alt'></i><span>Work</span></a></li>
-        </ul>
-      </div>
-
-      <div class="nav-actions">
-        <div class="theme-toggle" id="theme-btn"><i class='bx bx-moon'></i></div>
-        <a href="#contact" class="btn-hire-nav">Hire Me</a>
-        <div class="menu-icon" id="open-menu"><i class='bx bx-menu-alt-right'></i></div>
-      </div>
+      <button class="mob-toggle" id="mob-toggle" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </nav>
+  </header>
 
-  <!-- Mobile Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <span class="logo">DS<span>.</span></span>
-      <div class="close-btn" id="close-menu"><i class='bx bx-x'></i></div>
+  <!-- MOBILE DRAWER -->
+  <aside class="mob-drawer" id="mob-drawer">
+    <div class="md-head">
+      <div class="logo-hex sm"><svg viewBox="0 0 60 52" fill="none"><path d="M30 2L58 18V34L30 50L2 34V18Z" stroke="currentColor" stroke-width="1.5"/></svg><span>DS</span></div>
+      <button id="mob-close"><i class="bx bx-x"></i></button>
     </div>
-    <ul class="sidebar-links">
-      <li><a href="#home"><i class='bx bx-home-alt-2'></i> Home</a></li>
-      <li><a href="#about"><i class='bx bx-user-circle'></i> About</a></li>
-      <li><a href="#journey"><i class='bx bx-map'></i> Journey</a></li>
-      <li><a href="#skills"><i class='bx bx-code-alt'></i> Skills</a></li>
-      <li><a href="#projects"><i class='bx bx-grid-alt'></i> Work</a></li>
-      <li><a href="#contact" class="sidebar-cta">Contact Me</a></li>
-    </ul>
+    <div class="md-links">
+      <a href="#home"    class="mdl"><em>01</em>Home</a>
+      <a href="#about"   class="mdl"><em>02</em>About</a>
+      <a href="#journey" class="mdl"><em>03</em>Journey</a>
+      <a href="#skills"  class="mdl"><em>04</em>Skills</a>
+      <a href="#projects" class="mdl"><em>05</em>Work</a>
+      <a href="#contact" class="mdl md-cta">Let's Talk</a>
+    </div>
   </aside>
 
-  <!-- Mobile Bottom Navigation -->
-  <div class="mobile-nav-bottom">
-    <a href="#home" class="mobile-nav-item active" data-section="home">
-      <i class='bx bx-home-alt-2'></i>
-      <span>Home</span>
-    </a>
-    <a href="#about" class="mobile-nav-item" data-section="about">
-      <i class='bx bx-user-circle'></i>
-      <span>About</span>
-    </a>
-    <a href="#projects" class="mobile-nav-item" data-section="projects">
-      <i class='bx bx-briefcase'></i>
-      <span>Work</span>
-    </a>
-    <a href="#contact" class="mobile-nav-item" data-section="contact">
-      <i class='bx bx-envelope'></i>
-      <span>Contact</span>
-    </a>
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mob-bar">
+    <a href="#home"     class="mb-item active" data-sec="home"><i class="bx bx-home-alt-2"></i><span>Home</span></a>
+    <a href="#about"    class="mb-item" data-sec="about"><i class="bx bx-user"></i><span>About</span></a>
+    <a href="#projects" class="mb-item" data-sec="projects"><i class="bx bx-briefcase"></i><span>Work</span></a>
+    <a href="#contact"  class="mb-item" data-sec="contact"><i class="bx bx-send"></i><span>Contact</span></a>
   </div>
 
   <main>
-    <!-- Hero Section -->
+
+    <!-- ═══════ HERO ═══════ -->
     <section id="home" class="hero">
-      <div class="hero-bg-animation"></div>
-      <div class="container">
-        <div class="hero-content scroll-reveal">
-          <div class="avail-badge"><span class="dot"></span> BCA 3rd Year Student</div>
-          <h1>Crafting Logic <br> With <span class="gradient-text">Precision.</span></h1>
-          <p class="lead">Aspiring Full-Stack Developer specializing in MERN, Java, and Python. Turning complex problems
-            into elegant, high-performance web solutions.</p>
-          <div class="hero-btns">
-            <a href="#projects" class="btn btn-primary btn-ripple">
+      <div class="hero-inner">
+
+        <!-- Left -->
+        <div class="h-left" data-reveal>
+          <div class="h-badge">
+            <span class="badge-pulse"></span>
+            <span class="badge-mono">Available for projects</span>
+            <span class="badge-chip">BCA '26</span>
+          </div>
+
+          <h1 class="h-headline" aria-label="I turn ideas into — elegant Django solutions">
+            <span class="hh-row hh-pre" data-reveal-word>
+              <span class="hh-pre-inner">
+                <span class="hh-pre-comment">// developer.py</span>
+              </span>
+            </span>
+            <span class="hh-row hh-main" data-reveal-word>
+              <span class="hh-word hh-static">I turn ideas</span>
+              <span class="hh-word hh-into">into</span>
+            </span>
+            <span class="hh-row hh-rotate-line" data-reveal-word>
+              <span class="hh-rotator" id="hh-rotator" aria-live="polite">
+                <span class="hh-rot-word active">Elegant Code.</span>
+                <span class="hh-rot-word">Clean Django.</span>
+                <span class="hh-rot-word">Scalable APIs.</span>
+                <span class="hh-rot-word">Real Solutions.</span>
+                <span class="hh-rot-word">Backend Magic.</span>
+              </span>
+            </span>
+          </h1>
+
+          <p class="h-sub">
+            Django &amp; Python developer — BCA student at Tribhuvan University. I build scalable web apps with clean architecture, robust backends, and interfaces that feel alive.
+          </p>
+
+          <div class="h-actions">
+            <a href="#projects" class="btn-primary mag">
               <span>View Projects</span>
-              <i class='bx bx-right-arrow-alt'></i>
+              <i class="bx bx-right-arrow-alt"></i>
             </a>
-            <a href="#contact" class="btn btn-outline btn-ripple">
-              <i class='bx bx-envelope'></i>
-              <span>Connect</span>
+            <a href="#contact" class="btn-ghost mag">
+              <i class="bx bx-send"></i>
+              <span>Let's Talk</span>
             </a>
           </div>
-          <div class="scroll-indicator">
-            <i class='bx bx-mouse'></i>
-            <span>Scroll Down</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title scroll-reveal">About <span class="gradient-text">Me</span></h2>
-        <div class="bento-grid reveal-container">
-          <div class="bento-box glass bio stagger-item">
-            <h3>Who I Am</h3>
-            <p>I'm a technology enthusiast pursuing BCA at Tribhuvan University. My passion lies in building scalable
-              backend architectures and refined user interfaces that solve real-world problems. I believe in writing
-              clean, maintainable code and continuously learning new technologies.</p>
-          </div>
-          <div class="bento-box glass edu stagger-item center">
-            <i class='bx bxs-graduation floating-icon'></i>
-            <h4>Education</h4>
-            <p>BCA Student (3rd Year)<br>Tribhuvan University</p>
-          </div>
-          <div class="bento-box glass loc stagger-item center">
-            <i class='bx bxs-time floating-icon'></i>
-            <h4 id="local-time">00:00:00</h4>
-            <p>Nepal Time (NPT)</p>
-          </div>
-        </div>
-
-        <!-- Resume Download Section -->
-        <div class="resume-section glass scroll-reveal">
-          <div class="resume-content">
-            <i class='bx bxs-file-pdf'></i>
-            <div>
-              <h3>Download My Resume</h3>
-              <p>Get a detailed overview of my skills and experience</p>
+          <div class="h-stats">
+            <div class="hs-item">
+              <b class="hs-num count-anim" data-to="15">0</b>
+              <span>Projects</span>
+            </div>
+            <div class="hs-sep"></div>
+            <div class="hs-item">
+              <b class="hs-num count-anim" data-to="8">0</b>
+              <span>Technologies</span>
+            </div>
+            <div class="hs-sep"></div>
+            <div class="hs-item">
+              <b class="hs-num count-anim" data-to="2">0</b>
+              <span>Years exp.</span>
             </div>
           </div>
-          <a href="resume.pdf" download class="btn btn-primary btn-ripple" id="download-resume">
-            <i class='bx bx-download'></i> Download CV
-          </a>
+        </div>
+
+        <!-- Right — 3D floating code panel -->
+        <div class="h-right" data-reveal data-delay="300">
+          <div class="code-panel" id="code-panel">
+            <div class="cp-glow-line"></div>
+            <div class="cp-chrome">
+              <div class="cpc-dots">
+                <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+              </div>
+              <span class="cp-filename">expense_manager/views.py</span>
+              <span class="cp-badge">Python 3.11</span>
+            </div>
+            <div class="cp-body">
+              <div class="cp-line"><span class="ln">01</span><span class="t-kw">from</span> <span class="t-mod">django.shortcuts</span> <span class="t-kw">import</span> render</div>
+              <div class="cp-line"><span class="ln">02</span><span class="t-kw">from</span> <span class="t-mod">.models</span> <span class="t-kw">import</span> Expense</div>
+              <div class="cp-line"><span class="ln">03</span><span class="t-kw">from</span> <span class="t-mod">django.db.models</span> <span class="t-kw">import</span> Sum</div>
+              <div class="cp-line cp-blank"><span class="ln">04</span></div>
+              <div class="cp-line"><span class="ln">05</span><span class="t-dec">@login_required</span></div>
+              <div class="cp-line"><span class="ln">06</span><span class="t-kw">def</span> <span class="t-fn">dashboard</span>(request):</div>
+              <div class="cp-line"><span class="ln">07</span>&nbsp;&nbsp;&nbsp;&nbsp;expenses <span class="t-op">=</span> Expense.objects</div>
+              <div class="cp-line"><span class="ln">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.filter(<span class="t-str">user</span><span class="t-op">=</span>request.user)</div>
+              <div class="cp-line"><span class="ln">09</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.order_by(<span class="t-str">&#39;-date&#39;</span>)</div>
+              <div class="cp-line cp-blank"><span class="ln">10</span></div>
+              <div class="cp-line"><span class="ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;total <span class="t-op">=</span> expenses.aggregate(</div>
+              <div class="cp-line"><span class="ln">12</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total<span class="t-op">=</span><span class="t-fn">Sum</span>(<span class="t-str">&#39;amount&#39;</span>)</div>
+              <div class="cp-line"><span class="ln">13</span>&nbsp;&nbsp;&nbsp;&nbsp;)[<span class="t-str">&#39;total&#39;</span>] <span class="t-kw">or</span> <span class="t-num">0</span></div>
+              <div class="cp-line cp-blank"><span class="ln">14</span></div>
+              <div class="cp-line"><span class="ln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-kw">return</span> <span class="t-fn">render</span>(request, <span class="t-str">&#39;dash.html&#39;</span>,</div>
+              <div class="cp-line"><span class="ln">16</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="t-str">&#39;total&#39;</span>: total, <span class="t-str">&#39;data&#39;</span>: expenses})</div>
+            </div>
+            <div class="cp-footer">
+              <span class="cpf-lang"><i class="bx bxl-python"></i> Django ORM</span>
+              <span class="cpf-status"><span class="cpf-dot"></span> No issues</span>
+            </div>
+          </div>
+
+          <!-- orbiting tech badges -->
+          <div class="orbit-ring" id="orbit-ring">
+            <div class="orbit-badge ob-1"><i class="devicon-django-plain colored"></i></div>
+            <div class="orbit-badge ob-2"><i class="devicon-python-plain colored"></i></div>
+            <div class="orbit-badge ob-3"><i class="devicon-postgresql-plain colored"></i></div>
+            <div class="orbit-badge ob-4"><i class="devicon-javascript-plain colored"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" id="scroll-hint">
+        <div class="sh-line"></div>
+        <span>scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section id="about" class="section about-section">
+      <div class="section-skew"></div>
+      <div class="container">
+        <div class="section-eyebrow" data-reveal><span>// 02</span> About</div>
+        <h2 class="section-title" data-reveal data-delay="100">Who I <em>Am</em></h2>
+
+        <div class="about-grid">
+          <div class="about-text" data-reveal data-delay="150">
+            <p class="at-lead">I build things for the web — fast, scalable, and beautiful.</p>
+            <p class="at-body">Technology enthusiast pursuing BCA at Tribhuvan University. My passion is in building scalable backend architectures with Django and crafting elegant web interfaces. I specialize in Python, database design, and RESTful APIs. I believe in clean, maintainable code and constant growth.</p>
+            <div class="about-tags">
+              <span><i class="bx bxs-map-pin"></i> Nepal</span>
+              <span><i class="bx bxs-graduation"></i> BCA 3rd Year</span>
+              <span><i class="bx bx-code-alt"></i> Open to Work</span>
+              <span><i class="bx bx-time-five"></i> <span id="local-time">--:--:--</span> NPT</span>
+            </div>
+            <a href="resume.pdf" class="btn-outline mag" id="dl-resume"><i class="bx bx-download"></i> Download CV</a>
+          </div>
+
+          <div class="about-panels" data-reveal data-delay="250">
+            <!-- Education ring card -->
+            <div class="ap-card ap-edu tilt-card">
+              <div class="ap-ring-wrap">
+                <svg viewBox="0 0 120 120" class="ap-ring-svg">
+                  <defs>
+                    <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00f5ff"/>
+                      <stop offset="100%" stop-color="#7c3aed"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="60" cy="60" r="50" class="ring-track"/>
+                  <circle cx="60" cy="60" r="50" class="ring-fill" data-pct="75"/>
+                </svg>
+                <div class="ring-center">
+                  <span class="ring-pct">75%</span>
+                  <span class="ring-lbl">Complete</span>
+                </div>
+              </div>
+              <div class="ap-card-text">
+                <h4>BCA Progress</h4>
+                <p>Tribhuvan University</p>
+                <small>3rd Year</small>
+              </div>
+            </div>
+
+            <!-- Stats card -->
+            <div class="ap-card ap-stats tilt-card">
+              <div class="aps-grid">
+                <div class="aps-item">
+                  <b class="count-anim" data-to="15">0</b>
+                  <span>Projects</span>
+                </div>
+                <div class="aps-div" aria-hidden="true"></div>
+                <div class="aps-item">
+                  <b class="count-anim" data-to="8">0</b>
+                  <span>Technologies</span>
+                </div>
+                <div class="aps-item aps-wide">
+                  <b class="count-anim" data-to="2">0</b>
+                  <span>Years Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Journey/Timeline Section -->
-    <section id="journey" class="section">
+    <!-- ═══════ JOURNEY ═══════ -->
+    <section id="journey" class="section journey-section">
       <div class="container">
-        <h2 class="section-title scroll-reveal">My <span class="gradient-text">Journey</span></h2>
-        <div class="timeline reveal-container">
-          <div class="timeline-item stagger-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass">
-              <span class="timeline-date">2023 - Present</span>
+        <div class="section-eyebrow" data-reveal><span>// 03</span> Journey</div>
+        <h2 class="section-title" data-reveal data-delay="100">My <em>Timeline</em></h2>
+
+        <div class="timeline">
+          <div class="tl-spine"></div>
+
+          <div class="tl-entry tl-left" data-reveal data-delay="150">
+            <div class="tl-node"><div class="tl-ring"></div><div class="tl-dot"></div></div>
+            <div class="tl-card tilt-card">
+              <span class="tl-date-chip">2023 — Present</span>
               <h3>BCA Student</h3>
-              <p>Tribhuvan University</p>
-              <p class="timeline-desc">Currently in 3rd year, focusing on Full-Stack Development, Data Structures, and
-                Software Engineering principles.</p>
+              <em class="tl-org">Tribhuvan University</em>
+              <p>3rd year — Full-Stack Development, Data Structures, Database Management, and Software Engineering. Building real projects alongside rigorous coursework.</p>
+              <div class="tl-techs"><span>DSA</span><span>Django</span><span>Algorithms</span></div>
             </div>
           </div>
-          <div class="timeline-item stagger-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass">
-              <span class="timeline-date">2023</span>
-              <h3>Started Web Development</h3>
-              <p>Self-taught Journey</p>
-              <p class="timeline-desc">Began learning MERN stack and built multiple projects to strengthen my
-                development skills.</p>
+
+          <div class="tl-entry tl-right" data-reveal data-delay="250">
+            <div class="tl-node"><div class="tl-ring"></div><div class="tl-dot"></div></div>
+            <div class="tl-card tilt-card">
+              <span class="tl-date-chip">2025</span>
+              <h3>Started Django Development</h3>
+              <em class="tl-org">Self-taught</em>
+              <p>Learned the Django framework from scratch. Built full-stack web apps mastering MVT architecture, Django ORM, authentication, REST APIs, and PostgreSQL integration.</p>
+              <div class="tl-techs"><span>Django</span><span>Python</span><span>PostgreSQL</span><span>REST API</span></div>
             </div>
           </div>
-          <div class="timeline-item stagger-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass">
-              <span class="timeline-date">2022</span>
+
+          <div class="tl-entry tl-left" data-reveal data-delay="350">
+            <div class="tl-node"><div class="tl-ring"></div><div class="tl-dot"></div></div>
+            <div class="tl-card tilt-card">
+              <span class="tl-date-chip">2022</span>
               <h3>First Programming Project</h3>
-              <p>Python & Java</p>
-              <p class="timeline-desc">Created my first console application, sparking a passion for software
-                development.</p>
+              <em class="tl-org">Personal</em>
+              <p>Created my first console application in Python &amp; Java — the spark that lit a permanent passion for software development and problem-solving through code.</p>
+              <div class="tl-techs"><span>Python</span><span>Java</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills Section with Tech Stack Visualization -->
-    <section id="skills" class="section">
+    <!-- ═══════ SKILLS ═══════ -->
+    <section id="skills" class="section skills-section">
+      <div class="section-skew sk-right"></div>
       <div class="container">
-        <h2 class="section-title scroll-reveal">Technical <span class="gradient-text">Stack</span></h2>
+        <div class="section-eyebrow" data-reveal><span>// 04</span> Skills</div>
+        <h2 class="section-title" data-reveal data-delay="100">Technical <em>Stack</em></h2>
 
-        <!-- Tech Stack Layers -->
-        <div class="tech-stack-visual scroll-reveal">
-          <div class="tech-layer frontend glass">
-            <h3><i class='bx bx-palette'></i> Frontend</h3>
-            <div class="tech-icons">
-              <div class="tech-item">
-                <i class="devicon-html5-plain colored"></i>
-                <span>HTML5</span>
+        <div class="skills-canvas">
+
+          <!-- 3D cube -->
+          <div class="cube-stage" data-reveal data-delay="80">
+            <div class="cube" id="skills-cube">
+              <div class="cube-f cube-front"><i class="devicon-django-plain colored"></i></div>
+              <div class="cube-f cube-back"><i class="devicon-python-plain colored"></i></div>
+              <div class="cube-f cube-right"><i class="devicon-javascript-plain colored"></i></div>
+              <div class="cube-f cube-left"><i class="devicon-java-plain colored"></i></div>
+              <div class="cube-f cube-top"><i class="devicon-postgresql-plain colored"></i></div>
+              <div class="cube-f cube-bottom"><i class="devicon-git-plain colored"></i></div>
+            </div>
+            <div class="cube-shadow"></div>
+            <p class="cube-caption">hover to pause</p>
+          </div>
+
+          <!-- Icon clusters — no levels, pure icons -->
+          <div class="icon-clusters">
+            <div class="ic-group" data-reveal data-delay="100">
+              <div class="ic-header"><i class="bx bx-paint"></i>Frontend</div>
+              <div class="ic-grid">
+                <div class="sk-icon tilt-card" data-tip="HTML5"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+                <div class="sk-icon tilt-card" data-tip="CSS3"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+                <div class="sk-icon tilt-card" data-tip="JavaScript"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+                <div class="sk-icon tilt-card" data-tip="Bootstrap"><i class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
               </div>
-              <div class="tech-item">
-                <i class="devicon-css3-plain colored"></i>
-                <span>CSS3</span>
+            </div>
+            <div class="ic-group" data-reveal data-delay="200">
+              <div class="ic-header"><i class="bx bx-server"></i>Backend &amp; DB</div>
+              <div class="ic-grid">
+                <div class="sk-icon sk-icon--star tilt-card" data-tip="Django"><i class="devicon-django-plain colored"></i><span>Django</span></div>
+                <div class="sk-icon sk-icon--star tilt-card" data-tip="Python"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+                <div class="sk-icon tilt-card" data-tip="PostgreSQL"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div>
+                <div class="sk-icon tilt-card" data-tip="MySQL"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
               </div>
-              <div class="tech-item">
-                <i class="devicon-javascript-plain colored"></i>
-                <span>JavaScript</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-bootstrap-plain colored"></i>
-                <span>Bootstrap</span>
+            </div>
+            <div class="ic-group" data-reveal data-delay="300">
+              <div class="ic-header"><i class="bx bx-wrench"></i>Tools</div>
+              <div class="ic-grid">
+                <div class="sk-icon tilt-card" data-tip="Java"><i class="devicon-java-plain colored"></i><span>Java</span></div>
+                <div class="sk-icon tilt-card" data-tip="Git"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+                <div class="sk-icon tilt-card" data-tip="GitHub"><i class="devicon-github-original"></i><span>GitHub</span></div>
+                <div class="sk-icon tilt-card" data-tip="VS Code"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
               </div>
             </div>
           </div>
 
-          <div class="tech-layer backend glass">
-            <h3><i class='bx bx-server'></i> Backend</h3>
-            <div class="tech-icons">
-              <div class="tech-item">
-                <i class="devicon-nodejs-plain colored"></i>
-                <span>Node.js</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-django-plain colored"></i>
-                <span>Django</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-mysql-plain colored"></i>
-                <span>MySQL</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-postman-plain colored"></i>
-                <span>REST API</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="tech-layer languages glass">
-            <h3><i class='bx bx-code-curly'></i> Languages & Tools</h3>
-            <div class="tech-icons">
-              <div class="tech-item">
-                <i class="devicon-java-plain colored"></i>
-                <span>Java</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-python-plain colored"></i>
-                <span>Python</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-git-plain colored"></i>
-                <span>Git</span>
-              </div>
-              <div class="tech-item">
-                <i class="devicon-github-original"></i>
-                <span>GitHub</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </div><!-- /skills-canvas — FIX 1: was missing this closing div -->
+      </div><!-- /container -->
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
+    <!-- ═══════ PROJECTS ═══════ -->
+    <section id="projects" class="section projects-section">
       <div class="container">
-        <h2 class="section-title scroll-reveal">Featured <span class="gradient-text">Work</span></h2>
-        <div class="project-grid reveal-container">
+        <div class="section-eyebrow" data-reveal><span>// 05</span> Work</div>
+        <h2 class="section-title" data-reveal data-delay="100">Featured <em>Projects</em></h2>
 
-          <!-- Project 1 -->
-          <div class="project-card glass stagger-item">
-            <div class="project-thumbnail">
-              <div class="project-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                <i class='bx bx-wallet'></i>
+        <div class="proj-filter" data-reveal data-delay="150">
+          <button class="pf-btn active" data-pf="all">All</button>
+          <button class="pf-btn" data-pf="web">Web Apps</button>
+          <button class="pf-btn" data-pf="python">Python</button>
+          <button class="pf-btn" data-pf="cli">CLI Tools</button><!-- FIX 2: added CLI filter -->
+        </div>
+
+        <div class="proj-grid">
+
+          <article class="proj-card tilt-card" data-cat="web python" data-reveal data-delay="200">
+            <div class="pc-visual pv-purple">
+              <div class="pv-geo">
+                <div class="pvg-box pvg-1"></div>
+                <div class="pvg-box pvg-2"></div>
+                <div class="pvg-box pvg-3"></div>
               </div>
-              <div class="project-overlay">
-                <a href="#" class="project-link" title="Live Demo"><i class='bx bx-link-external'></i></a>
-                <a href="#" class="project-github" title="GitHub"><i class='bx bxl-github'></i></a>
+              <i class="bx bx-wallet pc-ico"></i>
+              <div class="pc-actions">
+                <a href="#" class="pca-btn" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+                <a href="#" class="pca-btn" aria-label="GitHub"><i class="bx bxl-github"></i></a>
               </div>
+              <span class="pc-chip">Featured</span>
+              <div class="pc-number">01</div>
             </div>
-            <div class="p-info">
-              <span class="featured-badge">Featured</span>
+            <div class="pc-info">
               <h3>Expense Manager</h3>
-              <p>Full-stack Django application for tracking expenses with user authentication, data visualization, and
-                comprehensive financial analytics.</p>
-              <div class="p-tags">
-                <span><i class="devicon-python-plain"></i> Python</span>
-                <span><i class="devicon-django-plain"></i> Django</span>
-                <span>Charts</span>
+              <p>Full-stack Django application — user auth, Chart.js visualization, category management, budget tracking, and CSV export. Clean MVT architecture throughout.</p>
+              <div class="pc-stack">
+                <span><i class="devicon-python-plain colored"></i>Python</span>
+                <span><i class="devicon-django-plain colored"></i>Django</span>
+                <span><i class="devicon-postgresql-plain colored"></i>PostgreSQL</span>
+              </div>
+              <div class="pc-meta">
+                <span><i class="bx bx-star"></i>24</span>
+                <span><i class="bx bx-git-branch"></i>5 forks</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Project 2 - Weather App (FIXED) -->
-          <div class="project-card glass stagger-item">
-            <div class="project-thumbnail">
-              <div class="project-img weather-gradient">
-                <i class='bx bx-cloud-sun'></i>
+          <article class="proj-card tilt-card" data-cat="python" data-reveal data-delay="300">
+            <div class="pc-visual pv-teal">
+              <div class="pv-geo">
+                <div class="pvg-ring pvg-r1"></div>
+                <div class="pvg-ring pvg-r2"></div>
+                <div class="pvg-ring pvg-r3"></div>
               </div>
-              <div class="project-overlay">
-                <a href="#" class="project-link" title="Live Demo"><i class='bx bx-link-external'></i></a>
-                <a href="#" class="project-github" title="GitHub"><i class='bx bxl-github'></i></a>
+              <i class="bx bx-cloud-sun pc-ico"></i>
+              <div class="pc-actions">
+                <a href="#" class="pca-btn" aria-label="Live Demo"><i class="bx bx-link-external"></i></a>
+                <a href="#" class="pca-btn" aria-label="GitHub"><i class="bx bxl-github"></i></a>
               </div>
+              <div class="pc-number">02</div>
             </div>
-            <div class="p-info">
+            <div class="pc-info">
               <h3>Weather App</h3>
-              <p>Python-based weather application with real-time forecasting, location search, and detailed
-                meteorological data via REST API integration.</p>
-              <div class="p-tags">
-                <span><i class="devicon-python-plain"></i> Python</span>
-                <span>REST API</span>
-                <span>Tkinter</span>
+              <p>Python desktop app — OpenWeather API integration, geocoding location search, 7-day forecast, and a polished Tkinter GUI interface with real-time data.</p>
+              <div class="pc-stack">
+                <span><i class="devicon-python-plain colored"></i>Python</span>
+                <span>OpenWeather API</span>
+                <span>Tkinter GUI</span>
               </div>
+              <div class="pc-meta">
+                <span><i class="bx bx-star"></i>18</span>
+                <span><i class="bx bx-git-branch"></i>3 forks</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Stock Management System ── -->
+          <article class="proj-card tilt-card" data-cat="python cli" data-reveal data-delay="400">
+            <div class="pc-visual pv-green">
+              <div class="pv-geo">
+                <div class="pvg-term pvg-t1"></div>
+                <div class="pvg-term pvg-t2"></div>
+                <div class="pvg-term pvg-t3"></div>
+              </div>
+              <div class="pv-console" aria-hidden="true">
+                <div class="pvc-line"><span class="pvc-prompt">&gt;&gt;&gt;</span> <span class="pvc-cmd">add_product()</span></div>
+                <div class="pvc-line pvc-out">ID: P004 | Qty: 120</div>
+                <div class="pvc-line"><span class="pvc-prompt">&gt;&gt;&gt;</span> <span class="pvc-cmd">view_stock()</span></div>
+                <div class="pvc-line pvc-out pvc-blink">&#9608;</div>
+              </div>
+              <div class="pc-actions">
+                <a href="https://github.com/dhananjaysah46/Stock-Management-System" target="_blank" rel="noopener noreferrer" class="pca-btn" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+              </div>
+              <span class="pc-chip pc-chip--green">Python Core</span>
+              <div class="pc-number">03</div>
+            </div>
+            <div class="pc-info">
+              <h3>Stock Management System</h3>
+              <p>Console-based Python application to manage product stock — storing product ID, name, price, and quantity via a dictionary-driven menu interface. Focuses on core Python fundamentals and efficient in-memory data manipulation.</p>
+              <div class="pc-stack">
+                <span><i class="devicon-python-plain colored"></i>Python</span>
+                <span><i class="bx bx-data"></i>Dictionary DS</span>
+                <span><i class="bx bx-terminal"></i>CLI / REPL</span>
+              </div>
+              <div class="pc-meta">
+                <span><i class="bx bx-code-block"></i>Core Python</span>
+                <span><i class="bx bx-menu-alt-left"></i>Menu-driven</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section id="contact" class="section contact-section">
+      <div class="section-skew"></div>
+      <div class="container">
+        <div class="section-eyebrow" data-reveal><span>// 06</span> Contact</div>
+        <h2 class="section-title" data-reveal data-delay="100">Let's <em>Build Together</em></h2>
+
+        <div class="contact-grid">
+          <div class="contact-left" data-reveal data-delay="150">
+            <p class="cl-lead">Have a Django project in mind? I'd love to collaborate and build something robust, scalable, and elegant.</p>
+            <div class="cl-links">
+              <a href="https://github.com/dhananjaysah46" target="_blank" rel="noopener noreferrer" class="cl-row mag">
+                <div class="clr-ico gh"><i class="bx bxl-github"></i></div>
+                <div class="clr-txt"><strong>GitHub</strong><span>@dhananjaysah46</span></div>
+                <i class="bx bx-right-arrow-alt clr-arr"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/dhananjaysah46/" target="_blank" rel="noopener noreferrer" class="cl-row mag">
+                <div class="clr-ico li"><i class="bx bxl-linkedin"></i></div>
+                <div class="clr-txt"><strong>LinkedIn</strong><span>Dhananjay Sah</span></div>
+                <i class="bx bx-right-arrow-alt clr-arr"></i>
+              </a>
+              <a href="mailto:dhananjaysah46@gmail.com" class="cl-row mag">
+                <div class="clr-ico em"><i class="bx bx-envelope"></i></div>
+                <div class="clr-txt"><strong>Email</strong><span>dhananjaysah46@gmail.com</span></div>
+                <i class="bx bx-right-arrow-alt clr-arr"></i>
+              </a>
             </div>
           </div>
 
+          <div class="contact-right" data-reveal data-delay="250">
+            <form id="contact-form" novalidate>
+              <div class="cf-duo">
+                <div class="cf-grp has-icon">
+                  <label for="name-in">Name</label>
+                  <input type="text" id="name-in" name="name" placeholder="Your name" required autocomplete="name">
+                  <i class="bx bx-check vld-ok"></i><i class="bx bx-x vld-err"></i>
+                </div>
+                <div class="cf-grp has-icon">
+                  <label for="email-in">Email</label>
+                  <input type="email" id="email-in" name="email" placeholder="you@example.com" required autocomplete="email">
+                  <i class="bx bx-check vld-ok"></i><i class="bx bx-x vld-err"></i>
+                </div>
+              </div>
+              <div class="cf-grp">
+                <label for="msg-in">Message</label>
+                <textarea id="msg-in" name="message" rows="5" placeholder="Tell me about your project…" required maxlength="500"></textarea>
+                <span class="char-count">0 / 500</span>
+              </div>
+              <input type="text" name="hp" id="hp" style="display:none" tabindex="-1" autocomplete="off">
+              <button type="submit" id="form-submit" class="btn-primary full mag">
+                <span id="btn-label">Send Message</span>
+                <i class="bx bx-send"></i>
+              </button>
+              <div id="form-feedback"></div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="contact-card glass scroll-reveal">
-          <h2>Get In <span class="gradient-text">Touch</span></h2>
-          <p style="color: var(--text-dim); margin-bottom: 30px;">Have a project in mind? Let's work together to bring
-            your ideas to life.</p>
-          <form id="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <input type="text" name="name" id="name-input" placeholder="Your Name" required>
-                <i class='bx bx-check form-icon valid-icon'></i>
-                <i class='bx bx-x form-icon invalid-icon'></i>
-              </div>
-              <div class="form-group">
-                <input type="email" name="email" id="email-input" placeholder="Your Email" required>
-                <i class='bx bx-check form-icon valid-icon'></i>
-                <i class='bx bx-x form-icon invalid-icon'></i>
-              </div>
-            </div>
-            <div class="form-group">
-              <textarea name="message" id="message-input" rows="5" placeholder="Tell me about your project..." required
-                maxlength="500"></textarea>
-              <span class="char-counter">0/500</span>
-            </div>
-            <div class="center">
-              <button type="submit" id="submit-btn" class="btn btn-primary btn-ripple">
-                <span id="btn-text">Send Message</span>
-                <i class='bx bx-send'></i>
-              </button>
-            </div>
-            <div id="form-msg"></div>
-          </form>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 - Dhananjay Sah. Built with passion and precision.</p>
-      <div class="socials">
-        <a href="https://github.com/dhananjaysah46" target="_blank" rel="noopener" aria-label="GitHub"><i
-            class='bx bxl-github'></i></a>
-        <a href="https://www.linkedin.com/in/dhananjaysah46/" target="_blank" rel="noopener" aria-label="LinkedIn"><i
-            class='bx bxl-linkedin'></i></a>
-        <a href="mailto:dhananjay07sah@gmail.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="fi-left">
+        <div class="logo-hex sm"><svg viewBox="0 0 60 52" fill="none"><path d="M30 2L58 18V34L30 50L2 34V18Z" stroke="currentColor" stroke-width="1.5"/></svg><span>DS</span></div>
+        <span class="fi-copy">&copy; 2026 Dhananjay Sah</span>
+      </div>
+      <p class="fi-tagline">Built with Django mindset &mdash; clean, scalable, precise.</p>
+      <div class="fi-social">
+        <a href="https://github.com/dhananjaysah46" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/dhananjaysah46/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+        <a href="mailto:dhananjaysah46@gmail.com" aria-label="Email"><i class="bx bx-envelope"></i></a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
-
 </html>
