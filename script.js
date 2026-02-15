@@ -428,8 +428,12 @@ function showToast(msg,type='ok'){
 /* ── Smooth anchor scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    const href=a.getAttribute('href');
+    if(!href||href==='#') return; // skip empty/hash-only links
+    try{
+      const t=document.querySelector(href);
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    }catch(_){}
   });
 });
 
@@ -537,9 +541,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       let n=0;
       const run=()=>{
         n=Math.min(n+step,target);
-        el.textContent=Math.floor(n)+(target>=10?'+':'');
+        el.textContent=Math.floor(n)+'+';
         if(n<target) requestAnimationFrame(run);
-        else el.textContent=target+(target>=10?'+':'');
+        else el.textContent=target+'+';
       };
       run();
       io.unobserve(el);
@@ -642,7 +646,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       btn.classList.add('active');
       const f=btn.getAttribute('data-pf');
       cards.forEach(c=>{
-        const cats=c.getAttribute('data-cat')||'';
+        const cats=(c.getAttribute('data-cat')||'').split(' ');
         const show=f==='all'||cats.includes(f);
         c.classList.toggle('hide',!show);
         if(show){
@@ -704,7 +708,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
   function sanitize(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
   function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);}
-  function validName(s){return /^[a-zA-Z\s''-]{2,50}$/.test(s.trim());}
+  function validName(s){return /^[a-zA-Z\s'\-]{2,50}$/.test(s.trim());}
   function validMsg(s){
     if(s.length<10||s.length>500) return false;
     return !/<script|javascript:|on\w+=|<iframe|eval\(/i.test(s);
@@ -766,7 +770,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     } finally{
       submitBtn.disabled=false;
       if(btnLabel) btnLabel.textContent='Send Message';
-      setTimeout(()=>{ feedback.className = ''; feedback.textContent = ''; },6000);
+      setTimeout(()=>{ feedback.className=''; feedback.textContent=''; },6000);
     }
   });
 })();
@@ -811,7 +815,7 @@ document.addEventListener('keydown',e=>{
 (function(){
   const orig=document.title;
   document.addEventListener('visibilitychange',()=>{
-    document.title=document.hidden?'👋 Come back soon!':orig;
+    document.title=document.hidden?'👋 Come back! — DS':orig;
   });
 })();
 

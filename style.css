@@ -217,78 +217,6 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 }
 .light-theme .pca-btn:hover{background:var(--lc-coral);border-color:var(--lc-coral);color:#fff;}
 
-/* ═══════════════════════════════════════════════════════════
-   STOCK MANAGEMENT SYSTEM — Project Card Styles
-═══════════════════════════════════════════════════════════ */
-
-/* ── 1. Green background gradient for the card visual ── */
-.pv-green {
-  background: linear-gradient(145deg, #021408, #042b12, #064d1c);
-}
-
-/* ── 2. Animated terminal scan-line geo elements ── */
-.pvg-term {
-  position: absolute;
-  height: 1.5px;
-  border-radius: 2px;
-  background: rgba(34, 197, 94, .25);
-}
-.pvg-t1 { width: 55%; top: 28%; left: 10%; animation: pvTermSlide 3.8s ease-in-out infinite; }
-.pvg-t2 { width: 35%; top: 48%; left: 18%; animation: pvTermSlide 3.8s ease-in-out infinite .7s; }
-.pvg-t3 { width: 45%; top: 68%; left: 12%; animation: pvTermSlide 3.8s ease-in-out infinite 1.4s; }
-
-@keyframes pvTermSlide {
-  0%   { opacity: .15; transform: scaleX(.6) translateX(-6px); }
-  50%  { opacity: .55; transform: scaleX(1)  translateX(0);    }
-  100% { opacity: .15; transform: scaleX(.6) translateX(-6px); }
-}
-
-/* ── 3. Floating mini Python console panel ── */
-.pv-console {
-  position: absolute;
-  z-index: 2;
-  bottom: 18px;
-  left: 16px;
-  right: 16px;
-  background: rgba(2, 20, 8, .82);
-  border: 1px solid rgba(34, 197, 94, .22);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem;
-  backdrop-filter: blur(6px);
-  pointer-events: none;
-}
-.pvc-line   { line-height: 1.9; white-space: nowrap; overflow: hidden; }
-.pvc-prompt { color: #4ade80; font-weight: 700; }
-.pvc-cmd    { color: #86efac; }
-.pvc-out    { color: rgba(134, 239, 172, .6); padding-left: 14px; }
-
-/* Blinking cursor on the last console line */
-@keyframes pvcBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-.pvc-blink { animation: pvcBlink .9s step-end infinite; color: #4ade80; }
-
-/* ── 4. Hide the default big icon — console is the hero ── */
-.pv-green .pc-ico { display: none; }
-
-/* ── 5. Green "Python Core" chip variant ── */
-.pc-chip--green {
-  background: linear-gradient(135deg, #16a34a, #15803d);
-  box-shadow: 0 4px 16px rgba(22, 163, 74, .4);
-}
-
-/* ── 6. Light-theme: keep console readable on warm background ── */
-.light-theme .pv-console {
-  background: rgba(2, 20, 8, .88);
-  border-color: rgba(34, 197, 94, .3);
-}
-
-/* ── 7. proj-grid: drop minmax so 3 cards sit side by side ──
-   Only change: 360px → 340px. Nothing else in proj-grid touched. */
-.proj-grid {
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-}
-
 /* Contact */
 .light-theme .contact-section{background:var(--deep);}
 .light-theme .contact-right{
@@ -1394,7 +1322,12 @@ body{
 }
 .pf-btn:hover{border-color:var(--teal);color:var(--teal);}
 .pf-btn.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:var(--glow-v);}
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:28px;}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
+/* Light theme console override */
+.light-theme .pv-console{
+  background:rgba(2,20,8,.88);
+  border-color:rgba(34,197,94,.3);
+}
 .proj-card{
   background:var(--surface);border:1px solid var(--edge);
   border-radius:20px;overflow:hidden;
@@ -1409,6 +1342,50 @@ body{
 }
 .pv-purple{background:linear-gradient(145deg,#0c0520,#1a0a40,#3b1a8f);}
 .pv-teal  {background:linear-gradient(145deg,#011420,#032a40,#065575);}
+.pv-green {background:linear-gradient(145deg,#021408,#042b12,#064d1c);}
+
+/* ── Green visual geo — floating terminal lines ── */
+.pvg-term{
+  position:absolute;height:1.5px;border-radius:2px;
+  background:rgba(34,197,94,.25);
+}
+.pvg-t1{width:55%;top:28%;left:10%;animation:pvTermSlide 3.8s ease-in-out infinite;}
+.pvg-t2{width:35%;top:48%;left:18%;animation:pvTermSlide 3.8s ease-in-out infinite .7s;}
+.pvg-t3{width:45%;top:68%;left:12%;animation:pvTermSlide 3.8s ease-in-out infinite 1.4s;}
+@keyframes pvTermSlide{
+  0%{opacity:.15;transform:scaleX(.6) translateX(-6px);}
+  50%{opacity:.55;transform:scaleX(1) translateX(0);}
+  100%{opacity:.15;transform:scaleX(.6) translateX(-6px);}
+}
+
+/* ── Floating console snippet in green card ── */
+.pv-console{
+  position:absolute;z-index:2;
+  bottom:18px;left:16px;right:16px;
+  background:rgba(2,20,8,.82);
+  border:1px solid rgba(34,197,94,.22);
+  border-radius:8px;padding:10px 14px;
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;
+  backdrop-filter:blur(6px);
+  pointer-events:none;
+}
+.pvc-line{line-height:1.9;white-space:nowrap;overflow:hidden;}
+.pvc-prompt{color:#4ade80;font-weight:700;}
+.pvc-cmd{color:#86efac;}
+.pvc-out{color:rgba(134,239,172,.6);padding-left:14px;}
+@keyframes pvcBlink{0%,100%{opacity:1}50%{opacity:0}}
+.pvc-blink{animation:pvcBlink .9s step-end infinite;color:#4ade80;}
+
+/* Green icon override */
+.pv-green-ico{filter:drop-shadow(0 0 20px rgba(34,197,94,.45));opacity:0;pointer-events:none;}
+/* hide the big icon — console is the hero */
+.pv-green .pc-ico{display:none;}
+
+/* ── pc-chip green variant ── */
+.pc-chip--green{
+  background:linear-gradient(135deg,#16a34a,#15803d);
+  box-shadow:0 4px 16px rgba(22,163,74,.4);
+}
 .pv-geo{position:absolute;inset:0;pointer-events:none;}
 .pvg-box{
   position:absolute;border:1px solid rgba(255,255,255,.1);border-radius:4px;
@@ -1541,8 +1518,8 @@ input.invalid~.vld-err,textarea.invalid~.vld-err{opacity:1;}
   margin-top:14px;padding:14px 16px;border-radius:10px;
   font-family:var(--font-mono);font-size:.85rem;display:none;
 }
-#form-feedback.ok{background:rgba(16,185,129,.1);border:1px solid var(--green);color:var(--green);display:block;}
-#form-feedback.fail{background:rgba(239,68,68,.1);border:1px solid var(--red);color:var(--red);display:block;}
+#form-feedback.ok{background:rgba(16,185,129,.1);border:1px solid var(--green);color:var(--green);display:block!important;}
+#form-feedback.fail{background:rgba(239,68,68,.1);border:1px solid var(--red);color:var(--red);display:block!important;}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}.cf-duo{grid-template-columns:1fr;}}
 
 /* ═══════════════════ FOOTER ═══════════════════ */
@@ -1697,3 +1674,155 @@ input.invalid~.vld-err,textarea.invalid~.vld-err{opacity:1;}
   .light-theme .about-section::before,
   .light-theme .contact-section::before{display:none;}
 }
+/* ═══════════════════════════════════════════════════════════
+   POCO M2 & SMALL MOBILE FIX — max-width: 480px / 393px
+   Paste at the very bottom of style.css
+   Fixes: Hero overflow · Nav · Project cards · Skills spacing
+          Contact form · Footer mob-bar overlap
+═══════════════════════════════════════════════════════════ */
+
+/* ─── GLOBAL: tighten container on small screens ─── */
+@media(max-width:480px){
+  .container{padding:0 18px;}
+  .section{padding:80px 0;}
+}
+
+/* ─── NAV ─── */
+@media(max-width:480px){
+  #site-nav{padding:11px 16px;}
+  .logo-full{font-size:.95rem;}
+  /* Ensure mob-bar doesn't get clipped */
+  .mob-bar{padding:8px 0 10px;}
+}
+
+/* ─── HERO ─── */
+@media(max-width:480px){
+  /* 1. Reduce top spacing */
+  .hero{padding-top:70px;}
+  .hero-inner{padding:28px 18px;gap:32px;}
+
+  /* 2. Fix headline overflow — was 2.8rem causing overflow */
+  .h-headline{font-size:clamp(2rem,8.5vw,2.6rem);}
+
+  /* 3. CRITICAL: rotating word overflows — allow wrap + clip */
+  .hh-rot-word{white-space:normal;word-break:break-word;}
+  .hh-rotate-line{overflow:hidden;}
+
+  /* 4. Fix blinking cursor size to match smaller headline */
+  .hh-rotate-line::after{font-size:clamp(1.8rem,8vw,2.4rem);}
+
+  /* 5. Stats row — reduce padding so 3 items fit */
+  .h-stats{gap:0;}
+  .hs-item{padding:0 14px;}
+  .hs-num{font-size:1.7rem;}
+  .hs-item span{font-size:.65rem;}
+
+  /* 6. Code panel — cap height and reduce font on mobile */
+  .code-panel{max-height:240px;overflow:hidden;}
+  .cp-body{max-height:160px;overflow:hidden;}
+  .cp-line{font-size:.72rem;padding:1px 14px;}
+  .cp-filename{font-size:.68rem;}
+  .cp-badge{display:none;}
+
+  /* 7. Orbit badges already hidden at 900px — ensure stays hidden */
+  .orbit-ring{display:none;}
+
+  /* 8. Sub text */
+  .h-sub{font-size:.95rem;margin-bottom:28px;}
+
+  /* 9. Action buttons */
+  .h-actions{gap:10px;margin-bottom:32px;}
+}
+
+/* ─── ABOUT ─── */
+@media(max-width:480px){
+  .about-section{padding-top:80px;}
+  .about-tags{gap:8px;}
+  .about-tags span{font-size:.72rem;padding:6px 12px;}
+  .ap-card{padding:20px 18px;}
+}
+
+/* ─── JOURNEY ─── */
+@media(max-width:480px){
+  .tl-card{padding:20px 18px;}
+  .tl-entry{gap:0 14px;margin-bottom:40px;}
+}
+
+/* ─── SKILLS ─── */
+@media(max-width:480px){
+  /* Remove excessive top padding */
+  .skills-section{padding-top:80px;}
+
+  /* Icon grid: 4 columns is tight at 393px — drop to 3 */
+  .ic-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
+  .sk-icon{padding:14px 8px;}
+  .sk-icon i{font-size:1.9rem;}
+  .sk-icon span{font-size:.68rem;}
+  .ic-group{padding:18px 16px;}
+}
+
+/* ─── PROJECTS ─── */
+@media(max-width:480px){
+  /* CRITICAL: minmax(340px) overflows 393px — force single column */
+  .proj-grid{grid-template-columns:1fr;}
+
+  /* Filter buttons: smaller padding so all 4 fit in one row */
+  .pf-btn{padding:7px 14px;font-size:.72rem;}
+  .proj-filter{gap:6px;margin-bottom:32px;}
+
+  /* Card info padding */
+  .pc-info{padding:20px 18px;}
+  .pc-info h3{font-size:1.05rem;}
+  .pc-info p{font-size:.85rem;}
+  .pc-stack span{font-size:.68rem;padding:4px 10px;}
+
+  /* Console panel font on small screen */
+  .pv-console{font-size:.62rem;padding:8px 10px;}
+  .pc-visual{height:190px;}
+}
+
+/* ─── CONTACT ─── */
+@media(max-width:480px){
+  .contact-section{padding-top:80px;}
+
+  /* Form card padding */
+  .contact-right{padding:24px 18px;}
+
+  /* Inputs */
+  .cf-grp input,.cf-grp textarea{padding:12px 40px 12px 14px;font-size:.88rem;}
+
+  /* Email address — allow wrapping so it doesn't overflow */
+  .clr-txt span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:180px;
+  }
+
+  /* Contact link rows */
+  .cl-row{padding:13px 14px;gap:12px;}
+  .clr-ico{width:38px;height:38px;font-size:1.25rem;}
+}
+
+/* ─── FOOTER ─── */
+@media(max-width:480px){
+  /* CRITICAL: mob-bar (60px) overlaps footer — add enough bottom padding */
+  .site-footer{padding-bottom:80px;}
+  .footer-inner{gap:12px;}
+  .fi-copy{font-size:.72rem;}
+}
+
+/* ─── SECTION HEADERS on mobile ─── */
+@media(max-width:480px){
+  .section-title{font-size:clamp(1.8rem,7.5vw,2.6rem);margin-bottom:36px;}
+  .section-eyebrow{font-size:.7rem;}
+}
+
+/* ─── TOAST: cap width on small screens ─── */
+@media(max-width:480px){
+  #toast-zone{right:10px;left:10px;}
+  .toast{min-width:unset;width:100%;}
+}
+
+/* ─── TOUCH-ACTION: prevent scroll interference on tilt cards ─── */
+.tilt-card{touch-action:manipulation;}
