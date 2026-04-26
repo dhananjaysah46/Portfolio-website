@@ -3,6 +3,25 @@
    DHANANJAY SAH · SIGNAL · script.js
 ═══════════════════════════════════════════════ */
 
+// Block right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Block common keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) e.preventDefault();
+  if (e.ctrlKey && e.key === 'U') e.preventDefault(); // view source
+});
+
+// Detect DevTools open via window size diff (unreliable but harmless)
+const threshold = 160;
+setInterval(() => {
+  if (window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold) {
+    document.body.innerHTML = ''; // clear page if devtools detected
+  }
+}, 1000);
+
 /* ── Loader ── */
 (function(){
   const loader = document.getElementById('loader');
@@ -412,7 +431,7 @@ console.log('%cDjango · Python · Built precise.', 'color:#8C8070;font-size:12p
 /* ── Tab title ── */
 const _origTitle = document.title;
 document.addEventListener('visibilitychange', () => {
-  document.title = document.hidden ? '👋 Come back' : _origTitle;
+  document.title = document.hidden ? '👋 Come back soon!' : _origTitle;
 });
 
 /* ── Konami ── */
