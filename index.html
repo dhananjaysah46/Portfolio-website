@@ -377,12 +377,13 @@
         <button class="fbtn" data-f="web">Web</button>
         <button class="fbtn" data-f="python">Python</button>
         <button class="fbtn" data-f="cli">CLI</button>
+        <button class="fbtn" data-f="civic">Civic</button>
       </div>
 
       <!-- Bento-style project grid -->
       <div class="proj-bento" id="proj-bento">
 
-        <!-- Card 1 — Large featured -->
+        <!-- Card 1 — Expense Manager -->
         <article class="pb-card pb-large" data-cat="web python" data-reveal data-delay="150">
           <div class="pbc-visual pbv-crimson">
             <div class="pbcv-num">01</div>
@@ -412,10 +413,97 @@
           </div>
         </article>
 
-        <!-- Card 2 — Regular -->
-        <article class="pb-card pb-reg" data-cat="python" data-reveal data-delay="220">
+        <!-- Card 2 — Sajha Samasya -->
+        <article class="pb-card pb-reg" data-cat="web python civic" data-reveal data-delay="220">
           <div class="pbc-visual pbv-navy">
             <div class="pbcv-num">02</div>
+            <div class="pbcv-shapes">
+              <div class="pvs-circle pvs-c1"></div>
+              <div class="pvs-circle pvs-c2"></div>
+            </div>
+            <div class="pbcv-icon"><i class="bx bx-map-pin"></i></div>
+          </div>
+          <div class="pbc-body">
+            <div class="pbc-meta">
+              <span class="pbc-tag pbc-tag--red">New</span>
+              <span class="pbc-year">2026</span>
+            </div>
+            <h3>Sajha Samasya</h3>
+            <p>Civic complaint and tracking platform for Nepal — citizens report local problems (water, roads,
+              electricity, waste) and communities upvote issues affecting them.</p>
+            <div class="pbc-stack">
+              <span>Python</span><span>Django</span><span>PostgreSQL</span>
+            </div>
+            <div class="pbc-links">
+              <a href="https://github.com/dhananjaysah46/sajha-samasya-django" target="_blank" rel="noopener"
+                class="pcl-btn"><i class="bx bxl-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 — Inventory Management System -->
+        <article class="pb-card pb-reg" data-cat="web python" data-reveal data-delay="290">
+          <div class="pbc-visual pbv-dark">
+            <div class="pbcv-num">03</div>
+            <div class="pbcv-terminal">
+              <div class="pvt-line"><span class="pvt-p">$</span> add_stock()</div>
+              <div class="pvt-line pvt-out">SKU: INV-009 | Qty: 240</div>
+              <div class="pvt-line"><span class="pvt-p">$</span> profit_report()</div>
+              <div class="pvt-line pvt-cur">█</div>
+            </div>
+          </div>
+          <div class="pbc-body">
+            <div class="pbc-meta">
+              <span class="pbc-tag pbc-tag--red">New</span>
+              <span class="pbc-year">2026</span>
+            </div>
+            <h3>Inventory Management System</h3>
+            <p>Production-style mini ERP built with Django REST Framework and vanilla JS frontend — tracks stock,
+              records sales &amp; purchases, and monitors profit/loss in real time.</p>
+            <div class="pbc-stack">
+              <span>Django</span><span>DRF</span><span>JavaScript</span><span>PostgreSQL</span>
+            </div>
+            <div class="pbc-links">
+              <a href="https://github.com/dhananjaysah46/inventory_system" target="_blank" rel="noopener"
+                class="pcl-btn"><i class="bx bxl-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 — TU BCA Document Assistant -->
+        <article class="pb-card pb-large" data-cat="web python" data-reveal data-delay="360">
+          <div class="pbc-visual pbv-crimson">
+            <div class="pbcv-num">04</div>
+            <div class="pbcv-shapes">
+              <div class="pvs-rect pvs-r1"></div>
+              <div class="pvs-rect pvs-r2"></div>
+              <div class="pvs-line pvs-ln1"></div>
+              <div class="pvs-line pvs-ln2"></div>
+            </div>
+            <div class="pbcv-icon"><i class="bx bx-file"></i></div>
+          </div>
+          <div class="pbc-body">
+            <div class="pbc-meta">
+              <span class="pbc-tag pbc-tag--red">New</span>
+              <span class="pbc-year">2026</span>
+            </div>
+            <h3>TU BCA Document Assistant</h3>
+            <p>Rule-based academic document validator for Tribhuvan University FOHSS students — validates BCA project
+              reports and internship reports against official TU formatting guidelines.</p>
+            <div class="pbc-stack">
+              <span>Python</span><span>Django</span><span>Rule Engine</span>
+            </div>
+            <div class="pbc-links">
+              <a href="https://github.com/dhananjaysah46/tu-doc-assistant-django" target="_blank" rel="noopener"
+                class="pcl-btn"><i class="bx bxl-github"></i> Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 — Weather App -->
+        <article class="pb-card pb-reg" data-cat="python" data-reveal data-delay="430">
+          <div class="pbc-visual pbv-navy">
+            <div class="pbcv-num">05</div>
             <div class="pbcv-shapes">
               <div class="pvs-circle pvs-c1"></div>
               <div class="pvs-circle pvs-c2"></div>
@@ -437,10 +525,10 @@
           </div>
         </article>
 
-        <!-- Card 3 — CLI -->
-        <article class="pb-card pb-reg" data-cat="python cli" data-reveal data-delay="290">
+        <!-- Card 6 — Stock Manager -->
+        <article class="pb-card pb-reg" data-cat="python cli" data-reveal data-delay="500">
           <div class="pbc-visual pbv-dark">
-            <div class="pbcv-num">03</div>
+            <div class="pbcv-num">06</div>
             <div class="pbcv-terminal">
               <div class="pvt-line"><span class="pvt-p">$</span> add_product()</div>
               <div class="pvt-line pvt-out">ID: P004 | Qty: 120</div>
@@ -451,7 +539,7 @@
           <div class="pbc-body">
             <div class="pbc-meta">
               <span class="pbc-tag pbc-tag--gray">CLI</span>
-              <span class="pbc-year">2024</span>
+              <span class="pbc-year">2025</span>
             </div>
             <h3>Stock Manager</h3>
             <p>Console Python app — dictionary-driven menu to manage product stock, ID, price, and quantity.</p>

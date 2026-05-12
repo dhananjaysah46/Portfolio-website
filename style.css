@@ -701,7 +701,6 @@ body{
 .dark .pb-card{background:var(--cream2);}
 .pb-card.hide{display:none;}
 .pb-card:hover .pbcv-icon{transform:scale(1.1);}
-.pb-large{grid-row:1;}
 
 /* Card visual header */
 .pbc-visual{
